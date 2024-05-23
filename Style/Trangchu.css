@@ -1,0 +1,497 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+section{
+    width: 100%;
+    height: 100vh;
+}
+
+section nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    right: 0;
+    left: 0;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+section nav .logo img{
+    width: 70px;
+    cursor: pointer;
+    margin: 7px 0;
+}
+
+section nav ul{
+    list-style: none;
+}
+
+section nav ul li{
+    display: inline-block;
+    margin: 0 10px;
+}
+
+section nav ul li a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 17px;
+    transition: 0.1s;
+}
+
+section nav ul li a::after{
+    content: '';
+    width: 0;
+    height: 2px;
+    background: #fac031;
+    display: block;
+    transition: 0.2s linear;
+}
+
+section nav ul li a:hover::after{
+    width: 100%;
+}
+
+section nav ul li a:hover{
+    color: #fac031;
+}
+
+section nav .icon i{
+    font-size: 18px;
+    color: #000;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+section nav .icon i:hover{
+    color: #fac031;
+}
+
+section nav .icon a{
+    margin-left: 20px;
+    padding: 8px 20px;
+    background: #fac031;
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+section nav .icon a:hover{
+    color: #000;
+    background: orange;
+}
+
+section .search-container {
+    display: flex;
+    align-items: center;
+    margin-right: -270px;
+    margin-left: -250px;
+}
+
+section .search-container input[type="text"] {
+    padding: 6px;
+    font-size: 15px;
+    border: none;
+    border-radius: 4px;
+}
+
+section .search-container button {
+    background: #fff;
+    padding: 6px;
+    margin-left: 2px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+section .search-container button:hover{
+    color: #fac031;
+}
+
+/* ---------------------Giới thiệu-------------------- */
+section .main{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    top: 130px;
+}
+
+section .main .men_text h1{
+    font-size: 60px;
+    position: relative;
+    top: -90px;
+    left: 20px;
+}
+
+section .main .men_text h1 span{
+    color: #fda211;
+    margin-left: 15px;
+    font-family: mv boli;
+    line-height: 22px;
+    font-size: 70px;
+    transition: 0.2s;
+
+}
+
+section .main .men_text h1 span:hover{
+    color: #ffcc33;
+}
+
+section .main .main_img img{
+    width: 700px;
+    height: 500px;
+    position: relative;
+    left: 70px; 
+}
+
+section p{
+    width: 650px;
+    margin-top: 10px;
+    text-align: justify;
+    position: relative;
+    left: 123px;
+    bottom: 120px;
+    line-height: 22px;
+}
+
+section .main_btn{
+    background: #fac031;
+    border-radius: 8px;
+    position: relative;
+    left: 123px;
+    bottom: 30px;
+    width: 150px;
+    cursor: pointer;
+    padding: 12px;
+}
+
+section .main_btn a{
+    color: #fff;
+    padding-left: 10px;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+section .main_btn i{
+    color: #fff;
+    transition: 0.3s;
+}
+
+section .main_btn:hover i{
+    transform: translateX(7px);
+}
+
+/* --------------------About------------------- */
+.about{
+    margin-top: -50px;
+    width: 100%;
+    height: 100vh;
+    padding: 70px 0;
+}
+
+.about .about_main{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.about .about_main .img img{
+    width: 700px;
+    height: 600px;
+    position: relative;
+    top: 60px;
+}
+
+.about .about_main .about_text h1 span{
+    color: #fac031;
+    margin-right: 15px;
+    font-family: mv boli;
+}
+
+.about .about_main .about_text h1{
+    font-size: 55px;
+    position: relative;
+    bottom: 50px;
+}
+
+.about .about_main .about_text h3{
+    font-size: 30px;
+    margin: 0 0 50px 0;
+}
+
+.about .about_main .about_text p{
+    width: 650px;
+    text-align: justify;
+    margin-right: 30px;
+    line-height: 22px;
+}
+
+.about .main_btn{
+    background: #fac031;
+    border-radius: 8px;
+    position: relative;
+    left: 53%;
+    bottom: 30px;
+    width: 150px;
+    cursor: pointer;
+    padding: 12px 25px;
+}
+
+.about .main_btn a{
+    color: #fff;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+.about .main_btn i{
+    color: #fff;
+    transition: 0.3s;
+}
+
+.about .main_btn:hover i{
+    transform: translateX(7px);
+}
+
+
+
+/* ----------------------Menu--------------------- */
+.menu{
+    width: 100%;
+    height: 100vh;
+    margin-top: 75px;
+    width: 100%;
+    padding: 70px 0;
+    background: rgb(10, 176, 218);
+}
+
+.menu h1{
+    color: #fff;
+    font-size: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.menu h1 span{
+    color: #fac031;
+    margin-left: 15px;
+    font-family: mv boli;
+}
+
+.menu h1 span::after{
+    content: '';
+    width: 100%;
+    height: 3px;
+    background: #fac031;
+    display: block;
+    position: relative;
+    bottom: 15px;
+}
+
+.menu .menu_box{
+    width: 95%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 15px;
+}
+
+.menu .menu_box .menu_card{
+    background: #fff;
+    color: #000;
+    width: 325px;
+    height: 515px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.menu .menu_box .menu_card .menu_img{
+    width: 300px;
+    height: 245px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.menu .menu_box .menu_card .menu_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: 0.3s;
+}
+
+.menu .menu_box .menu_card .menu_img:hover img{
+    transform: scale(1.1);
+}
+
+.menu .menu_box .menu_card .small_card{
+    width: 45px;
+    height: 45px;
+    float: right;
+    position: relative;
+    top: -240px;
+    right: -8px;
+    opacity: 0;
+    border-radius: 7px;
+    transition: 0.3s;
+}
+
+.menu .menu_box .menu_card:hover .small_card{
+    position: relative;
+    top: -240px;
+    right: 20px;
+    opacity: 1;
+}
+
+.menu .menu_box .menu_card .small_card i{
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 50px;
+    color: #000;
+    cursor: pointer;
+    text-shadow: 0 0 6px #000;
+    transition: 0.2s;
+}
+
+.menu .menu_box .menu_card .small_card i:hover{
+    color: #fff;
+}
+
+.menu .menu_box .menu_card .menu_info h2{
+    width: 60%;
+    text-align: center;
+    margin: 10px auto 10px auto;
+    font-size: 25px;
+    color: #fac031;
+}
+
+.menu .menu_box .menu_card .menu_info p{
+    text-align: center;
+    margin-top: 8px;
+    line-height: 21px;
+}
+
+.menu .menu_box .menu_card .menu_info h3{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.menu .menu_box .menu_card .menu_info .menu_icon{
+    color: #fac031;
+    text-align: center;
+    margin: 10px 0 20px 0;
+}
+
+.menu .menu_box .menu_card .menu_info .menu_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    background: #fac030;
+    padding: 8px 10px;
+    margin: 0 80px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.menu .menu_box .menu_card .menu_info .menu_btn:hover{
+    background: #fda211;
+    color: #000;
+}
+
+.menu .menu_box .menu_card .card_shopping{
+    float: right;
+    width: 40px;
+    height: 40px;
+    background: #fac030;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    bottom: 10px;
+    left: 20px;
+    transition: 0.3s;
+}
+
+.menu .menu_box .menu_card .card_shopping:hover{
+    background: #fda211;
+}
+
+
+.menu .menu_box .menu_card .card_shopping i{
+    font-size: 18px;
+    color: #fff;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.menu .menu_box .menu_card .card_shopping i:hover{
+    color: #000;
+}
+
+
+
+/* --------------Footer------------------ */
+
+footer{
+    width: 100%;
+    padding: 30px 0 0 20px;
+    background: #ebbdbd;
+}
+
+footer .footer_main{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+footer .footer_main .footer_tag{
+    margin-left: 55px;
+    text-align: justify;
+}
+
+footer .footer_main .footer_tag h2{
+    color: #000;
+    font-family: mv boli;
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+footer .footer_main .footer_tag p{
+    margin: 10px 0;
+}
+
+footer .footer_main .footer_tag i{
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+footer .footer_main .footer_tag i:hover{
+    color: #fac031;
+}
+
+footer .footer_main .footer_tag a{
+    color: #000;
+    text-decoration: none;
+}

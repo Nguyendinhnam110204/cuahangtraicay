@@ -52,12 +52,6 @@
                     <span class="text">Tin tức</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <i class='bx bxs-phone-call' ></i>
-                    <span class="text">Liên hệ</span>
-                </a>
-            </li>
         </ul>
         <ul class="side_menu">
             <li>

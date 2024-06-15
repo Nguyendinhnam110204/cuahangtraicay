@@ -1,0 +1,308 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+article {
+  width: 100%;
+  height: 70px;
+}
+
+article nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  left: 0;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+article nav .logo img {
+  width: 70px;
+  cursor: pointer;
+  margin: 7px 0;
+}
+
+article nav ul {
+  list-style: none;
+}
+
+article nav ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+article nav ul li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  font-size: 17px;
+  transition: 0.1s;
+}
+
+article nav ul li a::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background: #fac031;
+  display: block;
+  transition: 0.2s linear;
+}
+
+article nav ul li a:hover::after {
+  width: 100%;
+}
+
+article nav ul li a:hover {
+  color: #fac031;
+}
+
+article nav .icon i {
+  font-size: 18px;
+  color: #000;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+article nav .icon i:hover {
+  color: #fac031;
+}
+
+article nav .icon a {
+  margin-left: 20px;
+  padding: 8px 20px;
+  background: #fac031;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+article nav .icon a i {
+  font: large;
+  cursor: pointer;
+  position: relative;
+}
+article nav .icon a i::after {
+  content: attr(number);
+  position: absolute;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  background-color: orange;
+  right: -10px;
+  top: -12px;
+  border-radius: 50%;
+  font-size: small;
+  justify-content: center;
+  align-items: center;
+}
+article nav .icon a:hover {
+  color: #000;
+  background: orange;
+}
+/* mới */
+article nav .icon a:first-child {
+  background: none;
+  padding: 0;
+}
+/* mới */
+article .search-container {
+  display: flex;
+  align-items: center;
+  margin-right: -270px;
+  margin-left: -250px;
+}
+.auth-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+.auth-section .btn-login {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 1px solid #000;
+  font-size: 14px;
+  text-decoration: none;
+  color: #ffff;
+  text-align: center;
+}
+.auth-section .btn-register {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 1px solid #000;
+  font-size: 14px;
+  text-decoration: none;
+  color: #000;
+  text-align: center;
+  margin-left: 10px;
+}
+.auth-section .btn-login:hover {
+  background-color: #fff;
+  color: #000;
+  opacity: 0.8;
+}
+.auth-section .btn-register:hover {
+  background-color: #000;
+  color: #fff;
+  opacity: 0.8;
+}
+.auth-section p {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+article .search-container input[type="text"] {
+  padding: 6px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+}
+
+article .search-container button {
+  background: #fff;
+  padding: 6px;
+  margin-left: 2px;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+article .search-container button:hover {
+  color: #fac031;
+}
+/* thanbai */
+.title {
+  margin-top: 30px;
+  text-align: center;
+  line-height: 1.7;
+}
+.title a {
+  text-decoration: none;
+  color: black;
+}
+.title a :hover {
+  color: #fac031;
+}
+section .dieukhien {
+  text-align: center;
+}
+.dieukhien ul li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  font-size: 17px;
+  transition: 0.1s;
+}
+.dieukhien ul li {
+  display: inline-block;
+}
+.dieukhien ul {
+  list-style: none;
+}
+.pay_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+.pay_table tr td label {
+  display: flex;
+  align-items: center;
+}
+
+.pay_table tr td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  vertical-align: middle;
+  justify-content: center;
+}
+
+.pay_table tr td label img {
+  width: 100px;
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+}
+#bidv {
+  text-align: center;
+}
+#bidv div .noidung {
+  margin-top: 170px;
+  line-height: 1.3;
+}
+.contentck {
+  line-height: 2;
+}
+section form button[type="button"] {
+  display: block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+button[type="button"]:hover {
+  background-color: orange;
+}
+/* --------------Footer------------------ */
+
+footer {
+  width: 100%;
+  padding: 30px 0 0 20px;
+  background: #ebbdbd;
+}
+
+footer .footer_main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+footer .footer_main .footer_tag {
+  margin-left: 55px;
+  text-align: justify;
+}
+
+footer .footer_main .footer_tag h2 {
+  color: #000;
+  font-family: mv boli;
+  margin-bottom: 25px;
+  font-size: 30px;
+}
+
+footer .footer_main .footer_tag p {
+  margin: 10px 0;
+}
+
+footer .footer_main .footer_tag i {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+footer .footer_main .footer_tag i:hover {
+  color: #fac031;
+}
+
+footer .footer_main .footer_tag a {
+  color: #000;
+  text-decoration: none;
+}

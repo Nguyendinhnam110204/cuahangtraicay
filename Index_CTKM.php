@@ -46,7 +46,7 @@
             <tbody>
                 <?php
                     //ketnoi
-                    require_once 'db.php';
+                    require_once 'connect.php';
 
                     // Câu lệnh SQL
                     $list_sql = "SELECT * FROM khuyen_mai ORDER BY ten_khuyen_mai, giam_gia";

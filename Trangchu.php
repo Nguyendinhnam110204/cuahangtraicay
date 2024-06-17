@@ -1,10 +1,14 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./Style/Trangchu.css">
+    <link rel="stylesheet" href="./Style/Trangchu.css?v = <?php echo time();?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -12,28 +16,38 @@
     <section>
         <nav>
             <div class="logo">
-                <img src="./img/logo.png">
+                <img src="https://img.freepik.com/premium-vector/fresh-fruit-logo_25327-200.jpg?w=2000">
             </div>
 
-            <ul>
+            <ul style="margin-left: 130px">
                 <li><a href="#Home">Trang chủ</a></li>
                 <li><a href="#About">Sản phẩm</a></li>
                 <li><a href="#Menu">Tin tức</a></li>
-                <li><a href="#Gallary">Liên hệ</a></li>
                 <li><a href="#Review">Giới thiệu</a></li>
             </ul>
 
-            <div class="search-container">
+            <div class="search-container" style="margin-left:-150px">
                 <form action="/search" method="get">
                     <input type="text" placeholder="Tìm kiếm..." name="query">
-                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass" style="margin-left:-1px"></i></button>
                 </form>
             </div>
 
+            <i class="fa-solid fa-cart-shopping" ></i>
+
             <div class="icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <a href="./Dangnhap.html" class="Login_btn">Login</a>
+                <?php if (isset($_SESSION['so_dien_thoai'])): ?>
+                    <div class="user-avatar" id="avatar">
+                        <img src="https://i.pinimg.com/564x/49/3f/a0/493fa0f13970ab3ef29375669f670451.jpg" alt="Avatar" id="avatar" style="margin-left: -40px; margin-right: -80px;">
+                        <div class="dropdown-menu" id="dropdown-menu">
+                            <a href="#" onclick="logout()">Đăng xuất</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="./Dangnhap_Index.php" class="Login_btn" style="margin:0 -20px 0 -50px; ">Đăng nhập</a>
+                <?php endif; ?>
             </div>
+
         </nav>
 
 
@@ -277,5 +291,29 @@
         </div>
     </footer>
 
+
+
+    <script>
+        document.getElementById('avatar').addEventListener('click', function() {
+            var dropdownMenu = document.getElementById('dropdown-menu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        function logout() {
+            window.location.href = 'Dangxuat.php';
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('#avatar')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>

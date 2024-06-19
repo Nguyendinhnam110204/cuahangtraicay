@@ -1,6 +1,6 @@
 <?php
 
-    require_once '../connect.php';
+    require_once 'connect.php';
 
     $maCTKhuyenMai = $_POST['maCTKhuyenMai'];
     $tenChuongTrinh = $_POST['tenChuongTrinh'];

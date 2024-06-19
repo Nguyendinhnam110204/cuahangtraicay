@@ -180,6 +180,16 @@ a{
     border-radius: 4px;
 }
 
+.box.forgotpassword input[type="text"]{
+    display: block;
+    width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 .box.forgotpassword input[type="submit"] {
     display: block;
     width: 40%;

@@ -29,6 +29,10 @@ $tong_tien = $tam_tinh+$phivanchuyen;
 mysqli_close($conn);
 ?>
 
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -80,12 +84,22 @@ mysqli_close($conn);
           </form>
         </div>
 
+        <!-- <div class="icon"> -->
+        <a href="#"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
+        <!-- </div> -->
+
         <div class="icon">
-          <a href="giohang.php" class="cart-icon"
-            ><i class="fa-solid fa-cart-shopping" number="0"></i
-          ></a>
-          <a href="Dangnhap.php" class="Login_btn">Đăng Nhập</a>
-        </div>
+                <?php if (isset($_SESSION['so_dien_thoai'])): ?>
+                    <div class="user-avatar" id="avatar">
+                        <img src="https://i.pinimg.com/564x/49/3f/a0/493fa0f13970ab3ef29375669f670451.jpg" alt="Avatar" id="avatar" style="margin-left: -40px; margin-right: -80px;">
+                        <div class="dropdown-menu" id="dropdown-menu">
+                            <a href="#" onclick="logout()">Đăng xuất</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="./Dangnhap_Index.php" class="Login_btn" style="margin:0 -20px 0 -50px; ">Đăng nhập</a>
+                <?php endif; ?>
+            </div>
       </nav>
     </article>
     <!-- than -->
@@ -279,6 +293,47 @@ mysqli_close($conn);
         </table>
       </form>
     </section>
+    <!-- Phần cuối trang web -->
+    <!-- ---------------Footer---------------- -->
+    <footer>
+      <div class="footer_main">
+        <div class="footer_tag">
+          <h2>THÔNG TIN CỬA HÀNG</h2>
+          <p>
+            Địa chỉ: Số 16 Nguyễn Xiển - Phường Thanh Xuân Nam - Quận Thanh Xuân
+            - Hà Nội
+          </p>
+          <p>Email: nguyendinhnam204211@gmail.com</p>
+          <p>Sđt: 0941234789 - 0942568456</p>
+          <p>Giấy chứng nhận ĐKKD số: 41A6003434 | Ngày cấp: 1/1/2024</p>
+        </div>
+
+        <div class="footer_tag">
+          <h2>CHÍNH SÁCH - QUY ĐỊNH</h2>
+          <p>
+            <i class="fa-solid fa-angle-right"></i>HƯỚNG DẪN ĐẶT HÀNG VÀ THANH
+            TOÁN
+          </p>
+          <p>
+            <i class="fa-solid fa-angle-right"></i>CHÍNH SÁCH GIAO HÀNG VÀ ĐỔI
+            TRẢ
+          </p>
+          <p>
+            <i class="fa-solid fa-angle-right"></i>CHÍNH SÁCH BẢO MẬT THÔNG TIN
+          </p>
+        </div>
+
+        <div class="footer_tag">
+          <h2>Follows</h2>
+          <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" target="_blank"
+            ><i class="fa-brands fa-facebook-messenger"></i
+          ></a>
+          <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+    </footer>
     <script>
       function pay() {
         window.location.href = "./pay.php";
@@ -311,6 +366,30 @@ document.getElementById("tamtinh-value").innerText = tamTinh;
         setCartTotalPrice();
       });
     </script>
+
+<script>
+        document.getElementById('avatar').addEventListener('click', function() {
+            var dropdownMenu = document.getElementById('dropdown-menu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        function logout() {
+            window.location.href = 'Dangxuat.php';
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('#avatar')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+
     <script src="JS/location.js"></script>
   </body>
 </html>

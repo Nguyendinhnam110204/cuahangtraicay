@@ -25,11 +25,7 @@
                     <input type="text" placeholder="Số điện thoại" name="so_dien_thoai" required>
                     <input type="password" placeholder="Mật khẩu" name="mat_khau" required>
                     <input type="submit" value="Đăng nhập">
-<!-- <<<<<<<< HEAD:Dangnhap.php -->
-                    <a href="Quenmatkhau.php">Quên mật khẩu?</a>
-<!-- ======== -->
                     <a href="./Quenmatkhau_IndexEmail.php">Quên mật khẩu?</a>
-<!-- >>>>>>>> d02620c53d929759e4284523b6281fe7d4d399d9:Dangnhap_Index.php -->
                 </form>
             </div>
             <div class="form signupform">

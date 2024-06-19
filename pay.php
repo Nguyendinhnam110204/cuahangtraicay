@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,7 +22,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="./Style/payment.css" />
+    <link rel="stylesheet" href="./Style/payment.css?v = <?php echo time();?>" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -48,12 +53,22 @@
           </form>
         </div>
 
+        <!-- <div class="icon"> -->
+        <a href="#"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
+        <!-- </div> -->
+
         <div class="icon">
-          <a href="./giohang.php"
-            ><i class="fa-solid fa-cart-shopping" number="0"></i
-          ></a>
-          <a href="./Dangnhap.html" class="Login_btn">Đăng Nhập</a>
-        </div>
+                <?php if (isset($_SESSION['so_dien_thoai'])): ?>
+                    <div class="user-avatar" id="avatar">
+                        <img src="https://i.pinimg.com/564x/49/3f/a0/493fa0f13970ab3ef29375669f670451.jpg" alt="Avatar" id="avatar" style="margin-left: -40px; margin-right: -80px;">
+                        <div class="dropdown-menu" id="dropdown-menu">
+                            <a href="#" onclick="logout()">Đăng xuất</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="./Dangnhap_Index.php" class="Login_btn" style="margin:0 -20px 0 -50px; ">Đăng nhập</a>
+                <?php endif; ?>
+            </div>
       </nav>
     </article>
       <!-- Phần nội dung chính -->
@@ -267,5 +282,29 @@ document.addEventListener("DOMContentLoaded", function () {
         updateCartIcon();
       });
     </script>
+
+<script>
+        document.getElementById('avatar').addEventListener('click', function() {
+            var dropdownMenu = document.getElementById('dropdown-menu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        function logout() {
+            window.location.href = 'Dangxuat.php';
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('#avatar')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+
   </body>
 </html>

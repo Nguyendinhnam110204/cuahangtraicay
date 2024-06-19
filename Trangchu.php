@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,29 +25,41 @@
           <img src="Img/fresh-fruit-logo_25327-200.jpg" />
         </div>
 
-        <ul>
+        <ul style="margin-left: 190px">
           <li><a href="#Home">Trang chủ</a></li>
           <li><a href="#About">Sản phẩm</a></li>
           <li><a href="#Menu">Tin tức</a></li>
           <li><a href="#Review">Giới thiệu</a></li>
         </ul>
 
-        <div class="search-container">
+        <div class="search-container" style="margin-left:-150px">
           <form action="/search" method="get">
             <input type="text" placeholder="Tìm kiếm..." name="query" />
             <button type="submit">
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i class="fa-solid fa-magnifying-glass" style="margin-left:-1px"></i>
             </button>
           </form>
         </div>
 
-        <div class="icon">
+        <!-- <div class="icon"> -->
           <!-- mới phần giỏ hàng -->
-          <a href="giohang.php" target="_self"
-            ><i class="fa-solid fa-cart-shopping" number="0"></i
-          ></a>
-          <a href="Dangnhap.php" class="Login_btn">Đăng Nhập</a>
-        </div>
+            <a href="giohang.php" target="_self">
+                <i class="fa-solid fa-cart-shopping" number="0"></i>
+            </a>
+        <!-- </div> -->
+
+        <div class="icon">
+                <?php if (isset($_SESSION['so_dien_thoai'])): ?>
+                    <div class="user-avatar" id="avatar">
+                        <img src="https://i.pinimg.com/564x/49/3f/a0/493fa0f13970ab3ef29375669f670451.jpg" alt="Avatar" id="avatar" style="margin-left: -40px; margin-right: -80px;">
+                        <div class="dropdown-menu" id="dropdown-menu">
+                            <a href="#" onclick="logout()">Đăng xuất</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="./Dangnhap_Index.php" class="Login_btn" style="margin:0 -20px 0 -50px; ">Đăng nhập</a>
+                <?php endif; ?>
+            </div>
       </nav>
 
       <!-- ---------------Giới thiệu------------------- -->
@@ -307,6 +323,30 @@
         // Gọi hàm để cập nhật biểu tượng giỏ hàng khi tải trang
         updateCartIcon();
       });
+    </script>
+
+
+    <script>
+        document.getElementById('avatar').addEventListener('click', function() {
+            var dropdownMenu = document.getElementById('dropdown-menu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        function logout() {
+            window.location.href = 'Dangxuat.php';
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('#avatar')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        }
     </script>
   </body>
 </html>

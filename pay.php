@@ -31,14 +31,13 @@
     <article>
       <nav>
         <div class="logo">
-          <img src="./img/logo.png" />
+          <img src="Img/fresh-fruit-logo_25327-200.jpg" />
         </div>
-        <ul>
-          <li><a href="./Trangchu.html">Trang chủ</a></li>
-          <li><a href="#About">Sản phẩm</a></li>
-          <li><a href="#Menu">Tin tức</a></li>
-          <li><a href="#Gallary">Liên hệ</a></li>
-          <li><a href="#Review">Giới thiệu</a></li>
+        <ul style="margin-top:12px;">
+          <li><a href="Trangchu.php" style="text-decoration: none;">Trang chủ</a></li>
+          <li><a href="#About" style="text-decoration: none;">Sản phẩm</a></li>
+          <li><a href="#Menu" style="text-decoration: none;">Tin tức</a></li>
+          <li><a href="#Review" style="text-decoration: none;">Giới thiệu</a></li>
         </ul>
         <div class="search-container">
           <form action="/search" method="get">
@@ -53,7 +52,7 @@
           <a href="./giohang.php"
             ><i class="fa-solid fa-cart-shopping" number="0"></i
           ></a>
-          <a href="./Dangnhap.html" class="Login_btn">Login</a>
+          <a href="./Dangnhap.html" class="Login_btn">Đăng Nhập</a>
         </div>
       </nav>
     </article>
@@ -116,12 +115,14 @@
           </tr>
           <tr id="bidvqr_row" >
             <td>
-              <input type="radio" id="bidvqr" name="payment" value="bidvqr" />
+              <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded" action="thanhtoanmomo/xulythanhtoanmomo.php">
+               <input type="submit"  name="momo" value="Thanh Toán MoMo QRcode" class="btn btn-danger" />
+              </form>
             </td>
             <td>
-              <label for="bidvqr">
-                <img src="./Img/blobidv.jpg" alt="bidvQR" />
-                Chuyển khoản qua BIDV_QR ('Trả trước')
+              <label for="momo">
+                <img src="Img/momo2.jpg" alt="momoQR" />
+                Chuyển khoản qua MOMO_QR ('Trả trước')
               </label>
             </td>
           </tr>
@@ -191,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!ischecked) {
       alert("Vui lòng chọn một phương thức thanh toán.");
       event.preventDefault(); // Ngăn không cho mở modal nếu chưa chọn phương thức thanh toán
-      window.location.href = "./pay.html"; // Chuyển hướng về trang pay.html
+      window.location.href = "pay.php"; // Chuyển hướng về trang pay.html
     } else {
       // Hiển thị modal nếu đã chọn phương thức thanh toán
       $('#myModal').modal('show');
@@ -202,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
   $('#myModal').on('shown.bs.modal', function (e) {
     // Thêm sự kiện click cho nút "OK" trong modal
     $('#modalOKButton').on('click', function() {
-      window.location.href = "./pay.html"; // Chuyển hướng về trang pay.html khi ấn nút "OK"
+      window.location.href = "pay.php"; // Chuyển hướng về trang pay.html khi ấn nút "OK"
     });
   });
 });
@@ -212,6 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <!-- js -->
       </form>
     </section>
+    <form action="" method="post"></form>
     <!-- Phần cuối trang web -->
     <!-- ---------------Footer---------------- -->
     <footer>

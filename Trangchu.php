@@ -18,14 +18,13 @@
     <section>
       <nav>
         <div class="logo">
-          <img src="./img/logo.png" />
+          <img src="Img/fresh-fruit-logo_25327-200.jpg" />
         </div>
 
         <ul>
           <li><a href="#Home">Trang chủ</a></li>
           <li><a href="#About">Sản phẩm</a></li>
           <li><a href="#Menu">Tin tức</a></li>
-          <li><a href="#Gallary">Liên hệ</a></li>
           <li><a href="#Review">Giới thiệu</a></li>
         </ul>
 
@@ -40,10 +39,10 @@
 
         <div class="icon">
           <!-- mới phần giỏ hàng -->
-          <a href="./giohang.php" target="_self"
+          <a href="giohang.php" target="_self"
             ><i class="fa-solid fa-cart-shopping" number="0"></i
           ></a>
-          <a href="./Dangnhap.html" class="Login_btn">Login</a>
+          <a href="Dangnhap.php" class="Login_btn">Đăng Nhập</a>
         </div>
       </nav>
 

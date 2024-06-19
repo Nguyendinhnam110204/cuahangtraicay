@@ -229,6 +229,7 @@ section > form > .add_KH > tr > td {
   padding: 5px;
   font-size: 15px;
   width: 60%;
+  display: block;
 }
 select {
   width: 100%;
@@ -318,5 +319,49 @@ section form .ship td select option {
   background-color: orange;
 }
 .button_apdung {
+  text-align: center;
+}
+
+.auth-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+.auth-section .btn-login {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 1px solid #000;
+  font-size: 14px;
+  text-decoration: none;
+  color: #ffff;
+  text-align: center;
+}
+.auth-section .btn-register {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 1px solid #000;
+  font-size: 14px;
+  text-decoration: none;
+  color: #000;
+  text-align: center;
+  margin-left: 10px;
+}
+.auth-section .btn-login:hover {
+  background-color: #fff;
+  color: #000;
+  opacity: 0.8;
+}
+.auth-section .btn-register:hover {
+  background-color: #000;
+  color: #fff;
+  opacity: 0.8;
+}
+.auth-section p {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #555;
   text-align: center;
 }

@@ -16,14 +16,13 @@
     <article>
       <nav>
         <div class="logo">
-          <img src="./img/logo.png" />
+          <img src="Img/fresh-fruit-logo_25327-200.jpg" />
         </div>
-        <ul>
-          <li><a href="./Trangchu.html">Trang chủ</a></li>
-          <li><a href="#About">Sản phẩm</a></li>
-          <li><a href="#Menu">Tin tức</a></li>
-          <li><a href="#Gallary">Liên hệ</a></li>
-          <li><a href="#Review">Giới thiệu</a></li>
+        <ul style="margin-top:12px;" >
+          <li><a href="Trangchu.php" style="text-decoration: none;">Trang chủ</a></li>
+          <li><a href="#About" style="text-decoration: none;">Sản phẩm</a></li>
+          <li><a href="#Menu" style="text-decoration: none;">Tin tức</a></li>
+          <li><a href="#Review" style="text-decoration: none;">Giới thiệu</a></li>
         </ul>
 
         <div class="search-container">
@@ -37,7 +36,7 @@
 
         <div class="icon">
           <a href="#"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
-          <a href="./Dangnhap.html" class="Login_btn">Login</a>
+          <a href="Dangnhap.php" class="Login_btn">Đăng Nhập</a>
         </div>
       </nav>
     </article>
@@ -103,7 +102,7 @@
                 </table>
               </form>
               <div class="continue-shopping">
-                <a href="./Trangchu.html" class="btn btn-primary">← Tiếp tục mua hàng</a>
+                <a href="Trangchu.php" class="btn btn-primary">← Tiếp tục mua hàng</a>
               </div>
             </div>
             <div class="cart-content-right">
@@ -202,7 +201,7 @@
     </footer>
     <script>
       function Trangchu() {
-        window.location.href = "./Trangchu.html";
+        window.location.href = "Trangchu.php";
       }
       function diachi() {
         window.location.href = "location.php";

@@ -35,7 +35,7 @@ mysqli_close($conn);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fruit store</title>
-    <link rel="stylesheet" href="./Style/Loction.css" />
+    <link rel="stylesheet" href="./Style/Loction.css?v = <?php echo time();?>" />
 
     <link
       rel="stylesheet"
@@ -44,20 +44,32 @@ mysqli_close($conn);
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
     <!-- Phần đầu trang web -->
     <article>
       <nav>
         <div class="logo">
-          <img src="./img/logo.png" />
+          <img src="Img/fresh-fruit-logo_25327-200.jpg" />
         </div>
-        <ul>
-          <li><a href="./Trangchu.html">Trang chủ</a></li>
-          <li><a href="#About">Sản phẩm</a></li>
-          <li><a href="#Menu">Tin tức</a></li>
-          <li><a href="#Gallary">Liên hệ</a></li>
-          <li><a href="#Review">Giới thiệu</a></li>
+        <ul style="margin-top:12px;">
+          <li><a href="Trangchu.php" style="text-decoration: none;">Trang chủ</a></li>
+          <li><a href="#About" style="text-decoration: none;">Sản phẩm</a></li>
+          <li><a href="#Menu"style="text-decoration: none;">Tin tức</a></li>
+          <li><a href="#Review"style="text-decoration: none;">Giới thiệu</a></li>
         </ul>
         <div class="search-container">
           <form action="/search" method="get">
@@ -69,10 +81,10 @@ mysqli_close($conn);
         </div>
 
         <div class="icon">
-          <a href="./giohang.php" class="cart-icon"
+          <a href="giohang.php" class="cart-icon"
             ><i class="fa-solid fa-cart-shopping" number="0"></i
           ></a>
-          <a href="./Dangnhap.html" class="Login_btn">Login</a>
+          <a href="Dangnhap.php" class="Login_btn">Đăng Nhập</a>
         </div>
       </nav>
     </article>
@@ -80,8 +92,17 @@ mysqli_close($conn);
     <section>
       <div class="title">
         <div class="tieude">
-          <a href="./Trangchu.html"><h1>FRUIT STORE</h1></a>
+          <a href="Trangchu.php"><h1>FRUIT STORE</h1></a>
         </div>
+        <div class="auth-section">
+           <div style="display: flex;">
+            <a href="Dangnhap.php" class="btn-login btn btn-dark">ĐĂNG NHẬP</a>
+            <a href="Dangnhap.php" class="btn-register btn btn-light">ĐĂNG KÝ</a>
+           </div>
+            <p>
+                Đăng nhập/ Đăng ký tài khoản để được tích điểm và nhận thêm nhiều ưu đãi từ FRUIT STORE.
+            </p>
+         </div>
         <div class="dieukhien">
           <ul>
             <li><a href="./giohang.php">Giỏ hàng</a> <span> > </span></li>
@@ -260,7 +281,7 @@ mysqli_close($conn);
     </section>
     <script>
       function pay() {
-        window.location.href = "./pay.html";
+        window.location.href = "./pay.php";
       }
 
       document.addEventListener("DOMContentLoaded", (event) => {

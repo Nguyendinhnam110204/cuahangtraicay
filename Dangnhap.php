@@ -25,7 +25,7 @@
                     <input type="text" placeholder="Tên đăng nhập">
                     <input type="password" placeholder="Mật khẩu">
                     <input type="submit" value="Đăng nhập">
-                    <a href="./Quenmatkhau.html">Quên mật khẩu?</a>
+                    <a href="Quenmatkhau.php">Quên mật khẩu?</a>
                 </form>
             </div>
             <div class="form signupform">

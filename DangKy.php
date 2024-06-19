@@ -1,6 +1,6 @@
 <?php
 
-require_once 'db.php';
+require_once 'connect.php';
 
 // Hàm băm email sử dụng sha256
 function bam_email($email) {

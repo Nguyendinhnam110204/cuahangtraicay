@@ -304,7 +304,7 @@ section form .ship td select option {
 .buttun_thanhtoan {
   text-align: center;
 }
-.button_apdung input {
+.button_apdung button {
   margin: 10px;
   border: none;
   background-color: black;
@@ -314,7 +314,7 @@ section form .ship td select option {
   height: 40px;
   width: 150px;
 }
-.button_apdung input:hover {
+.button_apdung button:hover {
   background-color: orange;
 }
 .button_apdung {

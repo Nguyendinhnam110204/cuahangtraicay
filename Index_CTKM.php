@@ -47,7 +47,6 @@
                 <?php
                     //ketnoi
                     require_once 'connect.php';
-
                     // Câu lệnh SQL
                     $list_sql = "SELECT * FROM khuyen_mai ORDER BY ten_khuyen_mai, giam_gia";
                     
@@ -70,18 +69,18 @@
                                 <button
                                     type="button" 
                                     class="btn btn-success btn-update" 
-                                    data-ma_khuyen_mai="<?php echo $row["ma_khuyen_mai"] ?>" 
-                                    data-ten_khuyen_mai="<?php echo $row["ten_khuyen_mai"] ?>" 
-                                    data-giam_gia="<?php echo $row["giam_gia"] ?>" 
-                                    data-ngay_bat_dau="<?php echo $row["ngay_bat_dau"] ?>" 
-                                    data-ngay_ket_thuc="<?php echo $row["ngay_ket_thuc"] ?>" 
-                                    data-so_luong="<?php echo $row["so_luong"] ?>" 
+                                    data-ma_khuyen_mai="<?php echo $row["ma_khuyen_mai"]; ?>" 
+                                    data-ten_khuyen_mai="<?php echo $row["ten_khuyen_mai"]; ?>" 
+                                    data-giam_gia="<?php echo $row["giam_gia"]; ?>" 
+                                    data-ngay_bat_dau="<?php echo $row["ngay_bat_dau"]; ?>" 
+                                    data-ngay_ket_thuc="<?php echo $row["ngay_ket_thuc"]; ?>" 
+                                    data-so_luong="<?php echo $row["so_luong"]; ?>" 
                                     data-toggle="modal" 
                                     data-target="#myModal-update"
                                     style="margin-right: 10px">
                                     Update
                                 </button>
-                                <a onclick="return confirm('Bạn có muốn xóa chương trình khuyến mãi này không')" href="delete_CTKM.php?maCTKhuyenMai=<?php echo $row["ma_khuyen_mai"] ?>" class="btn btn-danger" style="margin-right: -15px">Delete</a>
+                                <a onclick="return confirm('Bạn có muốn xóa chương trình khuyến mãi này không')" href="delete_CTKM.php?maCTKhuyenMai=<?php echo $row["ma_khuyen_mai"] ;?>" class="btn btn-danger" style="margin-right: -15px">Delete</a>
                             </td>
                         </tr>
                     <?php

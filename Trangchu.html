@@ -40,7 +40,7 @@
 
         <div class="icon">
           <!-- mới phần giỏ hàng -->
-          <a href="./giohang.html" target="_self"
+          <a href="./giohang.php" target="_self"
             ><i class="fa-solid fa-cart-shopping" number="0"></i
           ></a>
           <a href="./Dangnhap.html" class="Login_btn">Login</a>
@@ -297,5 +297,17 @@
         </div>
       </div>
     </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        function updateCartIcon() {
+          const cartIcon = document.querySelector(".fa-cart-shopping");
+          const productCount = localStorage.getItem("cartItemCount") || 0;
+          cartIcon.setAttribute("number", productCount);
+        }
+
+        // Gọi hàm để cập nhật biểu tượng giỏ hàng khi tải trang
+        updateCartIcon();
+      });
+    </script>
   </body>
 </html>

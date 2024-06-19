@@ -19,7 +19,14 @@ $select_chitiet = "SELECT dh.ma_don_hang,
                   WHERE dh.ma_don_hang = '$id_ma_don_hang'";
 
 $result = mysqli_query($conn, $select_chitiet);
-$row = mysqli_fetch_assoc($result);
+//Kiểm tra xem truy vấn có trả về kết quả không trước khi cố gắng truy cập các chỉ mục của mảng $row.
+if (mysqli_num_rows($result) > 0) {
+  $row = mysqli_fetch_assoc($result);
+} else {
+  // Chuyển hướng nếu không có kết quả
+  header("Location: order.php?error=not_found");
+  exit();
+}
 
 ?>
 
@@ -85,7 +92,21 @@ $row = mysqli_fetch_assoc($result);
         <td><?php echo $row['ten_phuong_thuc'];  ?></td>
         <td><?php echo $row['dia_chi_nguoi_mua'];  ?></td>
         <td style="display:flex;">
-        <a href="sua.php?getid=<?php echo $row['ma_don_hang']; ?>" class="btn btn-success"><i class="fa-regular fa-pen-to-square"></i></a>
+        <button
+          type="button" 
+          class="btn btn-success btn-update" 
+          data-ten_nguoi_mua="<?php echo $row['ten_nguoi_mua']; ?>" 
+          data-email_nguoi_mua="<?php echo $row['email_nguoi_mua']; ?>" 
+          data-so_dien_thoai_nguoi_mua="<?php echo $row['so_dien_thoai_nguoi_mua']; ?>" 
+          data-ten_khuyen_mai="<?php echo $row['ten_khuyen_mai']; ?>" 
+          data-tong_tien="<?php echo $row['tong_tien']; ?>" 
+          data-ten_phuong_thuc="<?php echo $row['ten_phuong_thuc']; ?>" 
+          data-dia_chi_nguoi_mua="<?php echo $row['dia_chi_nguoi_mua']; ?>" 
+          data-toggle="modal" 
+          data-target="#myModal-update"
+          style="margin-right: 10px">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
         <a href="order.php" class="btn btn-primary" style="margin-left:10px;"><i class="fa-solid fa-right-from-bracket"></i></a>
         </td>
       </tr>
@@ -93,5 +114,85 @@ $row = mysqli_fetch_assoc($result);
   </table>
 </div>
 
+
+<div class="modal" id="myModal-update">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                 <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title" style="font-family: 'Times New Roman', Times, serif;">Sửa thông tin đơn hàng</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal Sửa -->
+                <div class="modal-body">
+                    <form action="../thao_tac_admin/update_chitietdonhang.php" method="post">
+                    <div class="form-group">
+                            <input type="hidden" name="ma_don_hang" value="<?php echo $row['ma_don_hang']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="update_ten_nguoi_mua">Khách Hàng</label>
+                            <input type="text" class="form-control" id="update_ten_nguoi_mua" name="ten_nguoi_mua" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="update_email_nguoi_mua">Email khách hàng</label>
+                            <input type="text" class="form-control" id="update_email_nguoi_mua" name="email_nguoi_mua" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="update_so_dien_thoai_nguoi_mua">SĐT KH</label>
+                            <input type="text" class="form-control" id="update_so_dien_thoai_nguoi_mua" name="so_dien_thoai_nguoi_mua" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="update_ten_khuyen_mai">Chiết Khấu</label>
+                            <input type="text" class="form-control" id="update_ten_khuyen_mai" name="ten_khuyen_mai" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="update_tong_tien">Tổng Tiền</label>
+                            <input type="text" class="form-control" id="update_tong_tien" name="tong_tien" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="update_phuong_thuc">Phương Thức Thanh Toán</label>
+                            <input type="text" class="form-control" id="update_phuong_thuc" name="phuong_thuc" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="update_dia_chi_nguoi_mua">Địa chỉ nhận hàng</label>
+                            <input type="text" class="form-control" id="update_dia_chi_nguoi_mua" name="dia_chi_nguoi_mua" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Cập nhật</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-left: 275px;">Đóng</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Lấy tất cả các nút "Update"
+                const updateButtons = document.querySelectorAll('.btn-update');
+
+                updateButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Lấy giá trị từ thuộc tính data-
+                        const ten_nguoi_mua = this.getAttribute('data-ten_nguoi_mua');
+                        const email_nguoi_mua = this.getAttribute('data-email_nguoi_mua');
+                        const so_dien_thoai_nguoi_mua = this.getAttribute('data-so_dien_thoai_nguoi_mua');
+                        const ten_khuyen_mai = this.getAttribute('data-ten_khuyen_mai');
+                        const tong_tien = this.getAttribute('data-tong_tien');
+                        const ten_phuong_thuc= this.getAttribute('data-ten_phuong_thuc');
+                        const dia_chi_nguoi_mua= this.getAttribute('data-dia_chi_nguoi_mua');
+
+                        // Điền giá trị vào các trường trong modal
+                        document.getElementById('update_ten_nguoi_mua').value = ten_nguoi_mua;
+                        document.getElementById('update_email_nguoi_mua').value = email_nguoi_mua;
+                        document.getElementById('update_so_dien_thoai_nguoi_mua').value = so_dien_thoai_nguoi_mua;
+                        document.getElementById('update_ten_khuyen_mai').value = ten_khuyen_mai;
+                        document.getElementById('update_tong_tien').value = tong_tien;
+                        document.getElementById('update_phuong_thuc').value = ten_phuong_thuc;
+                        document.getElementById('update_dia_chi_nguoi_mua').value = dia_chi_nguoi_mua;
+                    });
+                });
+            });
+        </script>
 </body>
 </html>

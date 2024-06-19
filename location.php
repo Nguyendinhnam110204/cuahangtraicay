@@ -1,31 +1,32 @@
 <?php 
-// test phần lọc quận huyện tỉnh thành từ sql
-$servername='localhost';
-$user='root';
-$pass='';
-$db='address';
-$conn=mysqli_connect($servername,$user,$pass,$db);
-
-$sql = "SELECT * FROM district";
-$sql_city = "SELECT * FROM city";
-$sql_ward = "SELECT * FROM ward";
-
-
-$result = mysqli_query($conn, $sql);
-if (!$result) {
-    mysqli_close($conn);
+require_once 'connect.php';
+$sql = "SELECT *FROM khuyen_mai ";
+$result = mysqli_query($conn,$sql);
+$giam_gia =0;
+if(isset($_POST['btnapdung_KM']) && isset($_POST['voucher'])){
+  $voucher_name = $_POST['voucher'];
+  $sql_giamgia = "SELECT giam_gia FROM khuyen_mai WHERE ma_khuyen_mai = '$voucher_name'";
+  $result_giamgia=mysqli_query($conn,$sql_giamgia);
+  if ($result_giamgia && mysqli_num_rows($result_giamgia) > 0) {
+    $row = mysqli_fetch_assoc($result_giamgia);
+    $giam_gia = (int) $row['giam_gia'];
+} else {
+    $giam_gia =0;
+}
 }
 
-$result_city = mysqli_query($conn, $sql_city);
-if (!$result_city) {
-  mysqli_close($conn);
-}
-
-$result_ward = mysqli_query($conn, $sql_ward);
-if (!$result_ward) {
-  mysqli_close($conn);
-}
-
+$phivanchuyen = 30000;
+// Khởi tạo biến $tam_tinh ban đầu là 0
+$tam_tinh = 0;
+// Kiểm tra xem giá trị 'cartTotalPrice' có tồn tại trong mảng $_POST hay không
+if (isset($_POST['cartTotalPrice'])) {
+    // Nếu 'cartTotalPrice' tồn tại, lấy giá trị này từ $_POST và gán cho $tam_tinh
+    $tam_tinh = (int)$_POST['cartTotalPrice'] ;
+    $tam_tinh = $tam_tinh - $giam_gia;
+} 
+$tong_tien = $tam_tinh+$phivanchuyen;
+// đóng kết nối
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +69,7 @@ if (!$result_ward) {
         </div>
 
         <div class="icon">
-          <a href="./giohang.html" class="cart-icon"
+          <a href="./giohang.php" class="cart-icon"
             ><i class="fa-solid fa-cart-shopping" number="0"></i
           ></a>
           <a href="./Dangnhap.html" class="Login_btn">Login</a>
@@ -83,7 +84,7 @@ if (!$result_ward) {
         </div>
         <div class="dieukhien">
           <ul>
-            <li><a href="./giohang.html">Giỏ hàng</a> <span> > </span></li>
+            <li><a href="./giohang.php">Giỏ hàng</a> <span> > </span></li>
             <li><a href="#">Thông tin giao hàng</a> <span> > </span></li>
             <li>phương thức thanh toán</li>
           </ul>
@@ -93,7 +94,8 @@ if (!$result_ward) {
         </div>
       </div>
       <!-- noidung -->
-      <form action="">
+      <form action="" method = "post">
+      <input type="hidden" id="cartTotalPriceInput" name="cartTotalPrice" value="" />
         <table class="add_KH">
           <tr >
             <td colspan="3">
@@ -107,8 +109,7 @@ if (!$result_ward) {
                 type="text"
                 id="name"
                 name="txtname"
-                value=""
-                required
+                value="<?php echo isset($_POST['txtname']) ? $_POST['txtname'] : ''; ?>"
               />
             </td>
           </tr>
@@ -122,7 +123,7 @@ if (!$result_ward) {
                     type="email"
                     id="email"
                     name="txtemail"
-                    value=""
+                    value="<?php echo isset($_POST['txtemail']) ? $_POST['txtemail'] : ''; ?>"
                   />
                 </div>
                 <div>
@@ -132,7 +133,7 @@ if (!$result_ward) {
                     type="text"
                     id="phone"
                     name="txtphone"
-                    value=""
+                    value="<?php echo isset($_POST['txtphone']) ? $_POST['txtphone'] : ''; ?>"
                   />
                 </div>
               </div>
@@ -150,6 +151,7 @@ if (!$result_ward) {
                 type="text"
                 id="address"
                 name="txtaddress"
+                value ="<?php echo isset($_POST['txtaddress']) ? $_POST['txtaddress'] : ''; ?>"
               />
             </td>
           </tr>
@@ -158,57 +160,35 @@ if (!$result_ward) {
               <select id="city" name="city">
                 <option value="">Chọn tỉnh / thành</option>
                 <!-- Thêm các tùy chọn khác vào đây -->
-                 <!-- test nha -->
-                 <?php 
-                 while($row_city = mysqli_fetch_assoc($result_city)){
-                  ?>
-                  <option value="<?php echo $row_city['city_id']; ?>"> <?php echo $row_city['name']; ?></option>
-                  <?php
-                 }
-                 ?>
               </select>
             </td>
             <td colspan="3">
               <select id="district" name="district">
                 <option value="">Chọn quận / huyện</option>
                 <!-- Thêm các tùy chọn khác vào đây -->
-                 <!-- test nha -->
-                 <?php 
-                 while($row_district = mysqli_fetch_assoc($result)){
-                  ?>
-                  <option value="<?php echo $row_district['district_id'] ?>"><?php echo $row_district['name_district']; ?></option>
-                  <?php
-                 }
-                 ?>
+                 
               </select>
             </td>
             <td colspan="3">
               <select id="ward" name="ward">
                 <option value="">Chọn phường / xã</option>
-                <!-- test nha -->
-                <?php 
-                 while($row_ward = mysqli_fetch_assoc($result_ward)){
-                  ?>
-                  <option value="<?php echo $row_ward['ward_id'] ?>"><?php echo $row_ward['name']; ?></option>
-                  <?php
-                 }
-                 ?>
+
                 <!-- Thêm các tùy chọn khác vào đây -->
               </select>
             </td>
           </tr>
           <tr>
             <td colspan="3" style="display: flex; text-align: right">
-              <input type="checkbox" id="ckbstore" name="ckbstore" />
+              <input type="checkbox" id="ckbstore" name="ckbstore" <?php if(isset($_POST['ckbstore'])) echo "checked"; ?> />
               <label style="margin-left: 7px" for="ckbstore"
                 >Nhận tại cửa hàng</label
               >
             </td>
           </tr>
-          <tr id="storeInfomation" style="display: none">
+          <tr id="storeInfomation" style="<?php if(isset($_POST['ckbstore'])) echo 'display: block'; else echo 'display: none'; ?>" >
             <td colspan="3">
               <div style="justify-content: center; text-align: center">
-                <p>
+                <p >
                   Địa chỉ: Số 16 Nguyễn Xiển - Phường Thanh Xuân Nam - Quận
                   Thanh Xuân- Hà Nội
                 </p>
@@ -219,33 +199,48 @@ if (!$result_ward) {
         </table>
         <!-- table-left -->
         <table class="ship">
-          <tr>
+          
+            <tr>
             <td style="display: flex">
               <select id="voucher" name="voucher">
-                <option value="">Mã Ship/Mã giảm giá</option>
+                <option value="">Mã free Ship/Mã giảm giá</option>
+                <?php 
+                while($rows_KM = mysqli_fetch_assoc($result)){
+                 
+                  echo '<option value="' . $rows_KM['ma_khuyen_mai'] . '">' . $rows_KM['ten_khuyen_mai'] . '</option>';
+                
+                }
+                ?>
                 <!-- Thêm các tùy chọn khác vào đây -->
               </select>
               <div class="button_apdung">
-                <input type="button" name="btnapdung" value=" Áp Dụng" />
+                <button type="submit" name="btnapdung_KM" >Áp dụng</button>
               </div>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>Giảm</td>
+            <td>
+              <div class="giam_gia"><span id="giamgia-value" ><?php echo $giam_gia; ?></span><sup>đ</sup></div>
             </td>
           </tr>
           <tr>
             <td>Tạm tính</td>
             <td>
-              <div class="tamtinh"><span>320.000</span><sup>đ</sup></div>
+              <div class="tamtinh"><span id="tamtinh-value" ><?php echo $tam_tinh; ?> </span><sup>đ</sup></div>
             </td>
           </tr>
           <tr>
             <td>Phí vận chuyển</td>
             <td>
-              <div class="tamtinh"><span>30.000</span><sup>đ</sup></div>
+              <div class="phivanchuyen"><span><?php echo $phivanchuyen; ?></span><sup>đ</sup></div>
             </td>
           </tr>
           <tr>
             <td><strong>Tổng tiền</strong></td>
             <td>
-              <strong class="tamtinh"><span>350.000</span><sup>đ</sup></strong>
+              <strong class="tongtien"><span id="total-value"><?php echo $tong_tien; ?></span><sup>đ</sup></strong>
             </td>
           </tr>
           <tr>
@@ -267,7 +262,35 @@ if (!$result_ward) {
       function pay() {
         window.location.href = "./pay.html";
       }
+
+      document.addEventListener("DOMContentLoaded", (event) => {
+        function updateCartIcon() {
+          const cartIcon = document.querySelector(".fa-cart-shopping");
+          const productCount = localStorage.getItem("cartItemCount") || 0;
+          cartIcon.setAttribute("number", productCount);
+        }
+        // Gọi hàm để cập nhật biểu tượng giỏ hàng khi tải trang
+        updateCartIcon();
+
+        function setCartTotalPrice(){
+           // Lấy giá trị từ localStorage
+           var cartTotalPrice = localStorage.getItem("cartTotalPrice");
+            // Đặt giá trị vào input ẩn
+            document.getElementById("cartTotalPriceInput").value = cartTotalPrice;
+            var tamTinhValue = parseInt(cartTotalPrice) || 0;
+ var giamGiaValue = parseInt(document.getElementById("giamgia-value").innerText) || 0;
+ var phiVanChuyenValue = parseInt(document.querySelector(".phivanchuyen span").innerText) || 0;
+
+var tamTinh = tamTinhValue - giamGiaValue;
+ var tongTien = tamTinh + phiVanChuyenValue;
+
+document.getElementById("tamtinh-value").innerText = tamTinh;
+ document.getElementById("total-value").innerText = tongTien;
+        }
+        setCartTotalPrice();
+      });
     </script>
     <script src="JS/location.js"></script>
   </body>
 </html>
+

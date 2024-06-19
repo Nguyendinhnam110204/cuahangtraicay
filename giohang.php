@@ -36,7 +36,7 @@
         </div>
 
         <div class="icon">
-          <a href="#"><i class="fa-solid fa-cart-shopping" number="0"></i></a>
+          <a href="#"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
           <a href="./Dangnhap.html" class="Login_btn">Login</a>
         </div>
       </nav>
@@ -66,17 +66,17 @@
                     <!-- lay ds tu csdl in ra   -->
                      <?php 
                      require_once 'connect.php';
-                     $select_giohang = "SELECT sp.ten_san_pham ,sp.url_hinh_anh, gh.tong_tien , gh.so_luong FROM gio_hang gh INNER JOIN san_pham sp ON gh.ma_san_pham = sp.ma_san_pham  ";
+                     $select_giohang = "SELECT gh.ma_gio_hang , sp.ten_san_pham ,sp.url_hinh_anh, sp.gia, gh.tong_tien , gh.so_luong FROM gio_hang gh INNER JOIN san_pham sp ON gh.ma_san_pham = sp.ma_san_pham  ";
                      
                      $result = mysqli_query($conn,$select_giohang);
                      while($rows = mysqli_fetch_assoc($result)){
                       ?>
-                      <tr>
+                      <tr class="product_rows">
                       <td>
-                        <img  class="soluong" src="<?php echo $rows['url_hinh_anh']; ?>" alt="" /><?php echo $rows['ten_san_pham'];?>
+                        <img   src="<?php echo $rows['url_hinh_anh']; ?>" alt="" /><?php echo $rows['ten_san_pham'];?>
                       </td>
                       <td>
-                        <p><span class="price" ><?php echo $rows['tong_tien'];  ?></span><sup>đ</sup></p>
+                        <p><span class="price" ><?php echo $rows['so_luong']*$rows['gia'];  ?></span><sup>đ</sup></p>
                       </td>
                       <td>
                         <input
@@ -89,7 +89,7 @@
                       </td>
                       <td style="cursor: pointer">
                         <a
-                          href="xoa.php"
+                          href="xoa_gio_hang.php?get_ma_gio_hang=<?php echo $rows['ma_gio_hang']; ?>"
                           class="btn btn-danger"
                           onclick=" return confirm('bạn có muốn xóa không ?')"
                           ><i class="fas fa-trash-alt"></i
@@ -205,10 +205,13 @@
         window.location.href = "./Trangchu.html";
       }
       function diachi() {
-        window.location.href = "./location.php";
+        window.location.href = "location.php";
       }
+
     </script>
 <script src="./JS/giohang.js"></script>
+
+
 
   </body>
 </html>

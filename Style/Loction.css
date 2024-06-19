@@ -1,0 +1,322 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+article {
+  width: 100%;
+  height: 70px;
+}
+
+article nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  left: 0;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+article nav .logo img {
+  width: 70px;
+  cursor: pointer;
+  margin: 7px 0;
+}
+
+article nav ul {
+  list-style: none;
+}
+
+article nav ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+article nav ul li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  font-size: 17px;
+  transition: 0.1s;
+}
+
+article nav ul li a::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background: #fac031;
+  display: block;
+  transition: 0.2s linear;
+}
+
+article nav ul li a:hover::after {
+  width: 100%;
+}
+
+article nav ul li a:hover {
+  color: #fac031;
+}
+.icon {
+  position: relative;
+  display: flex;
+  display: flex;
+  align-items: center;
+}
+.cart-icon {
+  position: relative;
+  display: inline-block;
+}
+.cart-icon i {
+  font-size: 24px; /* Kích thước của biểu tượng giỏ hàng */
+  color: #000;
+  transition: 0.3s;
+  position: relative;
+}
+.cart-icon i::after {
+  content: attr(number);
+  position: absolute;
+  top: -12px;
+  right: -10px;
+  background: #fac031;
+  color: #000;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+article nav .icon i {
+  font-size: 18px;
+  color: #000;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+article nav .icon i:hover {
+  color: #fac031;
+}
+
+article nav .icon a {
+  margin-left: 20px;
+  padding: 8px 20px;
+  background: #fac031;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+article nav .icon a:hover {
+  color: #000;
+  background: orange;
+}
+/* mới */
+article nav .icon a:first-child {
+  background: none;
+  padding: 0;
+}
+/* mới */
+article .search-container {
+  display: flex;
+  align-items: center;
+  margin-right: -270px;
+  margin-left: -250px;
+}
+
+article .search-container input[type="text"] {
+  padding: 6px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+}
+
+article .search-container button {
+  background: #fff;
+  padding: 6px;
+  margin-left: 2px;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+article .search-container button:hover {
+  color: #fac031;
+}
+
+/* thanbai */
+
+.title {
+  margin-top: 30px;
+  margin-left: 70px;
+  line-height: 1.7;
+}
+.title .tieude a {
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+}
+.title .tieude a :hover {
+  color: #fac031;
+}
+.dieukhien ul li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  font-size: 17px;
+  transition: 0.1s;
+}
+.dieukhien ul li {
+  display: inline-block;
+}
+.dieukhien ul {
+  list-style: none;
+}
+/* bảng */
+
+section > form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+section > form > .add_KH {
+  width: 60%;
+  border-collapse: collapse;
+  margin-left: 60px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+}
+section > form > .add_KH > tr > td {
+  padding: 2px;
+}
+.ten {
+  width: 80%;
+  padding: 5px;
+  margin: 5px 0;
+  font-size: 15px;
+}
+
+.address {
+  width: 280%;
+  padding: 5px;
+  margin: 5px 0;
+  font-size: 15px;
+}
+.email {
+  width: 94%;
+  padding: 5px;
+  margin: 5px 0;
+  font-size: 15px;
+}
+.phone {
+  padding: 5px;
+  font-size: 15px;
+  width: 60%;
+}
+select {
+  width: 100%;
+
+  padding: 5px 0;
+  margin: 5px 0;
+  font-size: 15px;
+}
+section form .add_KH #info_an2 td select option {
+  text-align: center;
+}
+section form .add_KH #info_an2 td #district {
+  margin-left: 35px;
+  width: 160px;
+}
+section form .add_KH #info_an2 td #ward {
+  margin-left: 35px;
+  width: 160px;
+}
+section form .add_KH #info_an2 td #city {
+  text-align: right;
+  width: 160px;
+}
+label {
+  display: block;
+  margin: 5px 0;
+}
+/* table-left */
+form .info_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+form .info_row div {
+  flex: 1;
+  margin: 5px;
+}
+section form .ship {
+  width: 60%;
+  margin-left: 45px;
+  padding-left: 50px;
+}
+
+.giatien {
+  margin-left: 190px;
+}
+section form .ship tr td {
+  padding: 10px 0;
+}
+section form .ship td select {
+  height: 40px;
+  margin-top: 10px;
+}
+section form .ship td select option {
+  text-align: center;
+}
+.tamtinh {
+  margin-right: 90px;
+}
+.buttun_thanhtoan input {
+  margin: 10px;
+  border: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 50px;
+  width: 150px;
+}
+.buttun_thanhtoan input:hover {
+  background-color: orange;
+}
+.buttun_thanhtoan {
+  text-align: center;
+}
+.button_apdung button {
+  margin: 10px;
+  border: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 40px;
+  width: 150px;
+}
+.button_apdung button:hover {
+  background-color: orange;
+}
+.button_apdung {
+  text-align: center;
+}

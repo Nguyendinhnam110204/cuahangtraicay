@@ -29,13 +29,17 @@ $tong_tien = $tam_tinh+$phivanchuyen;
 mysqli_close($conn);
 ?>
 
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fruit store</title>
-    <link rel="stylesheet" href="./Style/Loction.css" />
+    <link rel="stylesheet" href="./Style/Loction.css?v = <?php echo time();?>" />
 
     <link
       rel="stylesheet"
@@ -44,20 +48,32 @@ mysqli_close($conn);
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
     <!-- Phần đầu trang web -->
     <article>
       <nav>
         <div class="logo">
-          <img src="./img/logo.png" />
+          <img src="Img/fresh-fruit-logo_25327-200.jpg" />
         </div>
-        <ul>
-          <li><a href="./Trangchu.html">Trang chủ</a></li>
-          <li><a href="#About">Sản phẩm</a></li>
-          <li><a href="#Menu">Tin tức</a></li>
-          <li><a href="#Gallary">Liên hệ</a></li>
-          <li><a href="#Review">Giới thiệu</a></li>
+        <ul style="margin-top:12px;">
+          <li><a href="Trangchu.php" style="text-decoration: none;">Trang chủ</a></li>
+          <li><a href="#About" style="text-decoration: none;">Sản phẩm</a></li>
+          <li><a href="#Menu"style="text-decoration: none;">Tin tức</a></li>
+          <li><a href="#Review"style="text-decoration: none;">Giới thiệu</a></li>
         </ul>
         <div class="search-container">
           <form action="/search" method="get">
@@ -68,20 +84,39 @@ mysqli_close($conn);
           </form>
         </div>
 
+         <div class="icon-cart"> 
+        <a href="#"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
+         </div>
+
         <div class="icon">
-          <a href="./giohang.php" class="cart-icon"
-            ><i class="fa-solid fa-cart-shopping" number="0"></i
-          ></a>
-          <a href="./Dangnhap.html" class="Login_btn">Login</a>
-        </div>
+                <?php if (isset($_SESSION['so_dien_thoai'])): ?>
+                    <div class="user-avatar" id="avatar">
+                        <img src="https://i.pinimg.com/564x/49/3f/a0/493fa0f13970ab3ef29375669f670451.jpg" alt="Avatar" id="avatar" style="margin-left: -40px; margin-right: -80px;">
+                        <div class="dropdown-menu" id="dropdown-menu">
+                            <a href="#" onclick="logout()">Đăng xuất</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="./Dangnhap_Index.php" class="Login_btn" style="margin:0 -20px 0 -50px; ">Đăng nhập</a>
+                <?php endif; ?>
+            </div>
       </nav>
     </article>
     <!-- than -->
     <section>
       <div class="title">
         <div class="tieude">
-          <a href="./Trangchu.html"><h1>FRUIT STORE</h1></a>
+          <a href="Trangchu.php"><h1>FRUIT STORE</h1></a>
         </div>
+        <div class="auth-section">
+           <div style="display: flex;">
+            <a href="Dangnhap.php" class="btn-login btn btn-dark">ĐĂNG NHẬP</a>
+            <a href="Dangnhap.php" class="btn-register btn btn-light">ĐĂNG KÝ</a>
+           </div>
+            <p>
+                Đăng nhập/ Đăng ký tài khoản để được tích điểm và nhận thêm nhiều ưu đãi từ FRUIT STORE.
+            </p>
+         </div>
         <div class="dieukhien">
           <ul>
             <li><a href="./giohang.php">Giỏ hàng</a> <span> > </span></li>
@@ -258,9 +293,50 @@ mysqli_close($conn);
         </table>
       </form>
     </section>
+    <!-- Phần cuối trang web -->
+    <!-- ---------------Footer---------------- -->
+    <footer>
+      <div class="footer_main">
+        <div class="footer_tag">
+          <h2>THÔNG TIN CỬA HÀNG</h2>
+          <p>
+            Địa chỉ: Số 16 Nguyễn Xiển - Phường Thanh Xuân Nam - Quận Thanh Xuân
+            - Hà Nội
+          </p>
+          <p>Email: nguyendinhnam204211@gmail.com</p>
+          <p>Sđt: 0941234789 - 0942568456</p>
+          <p>Giấy chứng nhận ĐKKD số: 41A6003434 | Ngày cấp: 1/1/2024</p>
+        </div>
+
+        <div class="footer_tag">
+          <h2>CHÍNH SÁCH - QUY ĐỊNH</h2>
+          <p>
+            <i class="fa-solid fa-angle-right"></i>HƯỚNG DẪN ĐẶT HÀNG VÀ THANH
+            TOÁN
+          </p>
+          <p>
+            <i class="fa-solid fa-angle-right"></i>CHÍNH SÁCH GIAO HÀNG VÀ ĐỔI
+            TRẢ
+          </p>
+          <p>
+            <i class="fa-solid fa-angle-right"></i>CHÍNH SÁCH BẢO MẬT THÔNG TIN
+          </p>
+        </div>
+
+        <div class="footer_tag">
+          <h2>Follows</h2>
+          <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" target="_blank"
+            ><i class="fa-brands fa-facebook-messenger"></i
+          ></a>
+          <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+    </footer>
     <script>
       function pay() {
-        window.location.href = "./pay.html";
+        window.location.href = "./pay.php";
       }
 
       document.addEventListener("DOMContentLoaded", (event) => {
@@ -290,6 +366,30 @@ document.getElementById("tamtinh-value").innerText = tamTinh;
         setCartTotalPrice();
       });
     </script>
+
+<script>
+        document.getElementById('avatar').addEventListener('click', function() {
+            var dropdownMenu = document.getElementById('dropdown-menu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        function logout() {
+            window.location.href = 'Dangxuat.php';
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('#avatar')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+
     <script src="JS/location.js"></script>
   </body>
 </html>

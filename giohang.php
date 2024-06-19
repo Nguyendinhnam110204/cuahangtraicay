@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="./Style/giohang.css" />
+    <link rel="stylesheet" href="./Style/giohang.css?v = <?php echo time();?>" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
@@ -16,14 +20,13 @@
     <article>
       <nav>
         <div class="logo">
-          <img src="./img/logo.png" />
+          <img src="Img/fresh-fruit-logo_25327-200.jpg" />
         </div>
-        <ul>
-          <li><a href="./Trangchu.html">Trang chủ</a></li>
-          <li><a href="#About">Sản phẩm</a></li>
-          <li><a href="#Menu">Tin tức</a></li>
-          <li><a href="#Gallary">Liên hệ</a></li>
-          <li><a href="#Review">Giới thiệu</a></li>
+        <ul style="margin-top:12px;" >
+          <li><a href="Trangchu.php" style="text-decoration: none;">Trang chủ</a></li>
+          <li><a href="#About" style="text-decoration: none;">Sản phẩm</a></li>
+          <li><a href="#Menu" style="text-decoration: none;">Tin tức</a></li>
+          <li><a href="#Review" style="text-decoration: none;">Giới thiệu</a></li>
         </ul>
 
         <div class="search-container">
@@ -35,10 +38,23 @@
           </form>
         </div>
 
-        <div class="icon">
-          <a href="#"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
-          <a href="./Dangnhap.html" class="Login_btn">Login</a>
+        
+        <div class="icon-cart">
+         <a href="#"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
         </div>
+
+        <div class="icon">
+                <?php if (isset($_SESSION['so_dien_thoai'])): ?>
+                    <div class="user-avatar" id="avatar">
+                        <img src="https://i.pinimg.com/564x/49/3f/a0/493fa0f13970ab3ef29375669f670451.jpg" alt="Avatar" id="avatar" style="margin-left: -40px; margin-right: -80px;">
+                        <div class="dropdown-menu" id="dropdown-menu">
+                            <a href="#" onclick="logout()">Đăng xuất</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="./Dangnhap_Index.php" class="Login_btn" style="margin:0 -20px 0 -50px; ">Đăng nhập</a>
+                <?php endif; ?>
+            </div>
       </nav>
     </article>
     <!-------gio hang-------------->
@@ -103,7 +119,7 @@
                 </table>
               </form>
               <div class="continue-shopping">
-                <a href="./Trangchu.html" class="btn btn-primary">← Tiếp tục mua hàng</a>
+                <a href="Trangchu.php" class="btn btn-primary">← Tiếp tục mua hàng</a>
               </div>
             </div>
             <div class="cart-content-right">
@@ -202,7 +218,7 @@
     </footer>
     <script>
       function Trangchu() {
-        window.location.href = "./Trangchu.html";
+        window.location.href = "Trangchu.php";
       }
       function diachi() {
         window.location.href = "location.php";
@@ -212,6 +228,27 @@
 <script src="./JS/giohang.js"></script>
 
 
+<script>
+        document.getElementById('avatar').addEventListener('click', function() {
+            var dropdownMenu = document.getElementById('dropdown-menu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
 
+        function logout() {
+            window.location.href = 'Dangxuat.php';
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('#avatar')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
   </body>
 </html>

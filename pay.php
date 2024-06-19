@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,7 +22,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="./Style/payment.css" />
+    <link rel="stylesheet" href="./Style/payment.css?v = <?php echo time();?>" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -31,14 +36,13 @@
     <article>
       <nav>
         <div class="logo">
-          <img src="./img/logo.png" />
+          <img src="Img/fresh-fruit-logo_25327-200.jpg" />
         </div>
-        <ul>
-          <li><a href="./Trangchu.html">Trang chủ</a></li>
-          <li><a href="#About">Sản phẩm</a></li>
-          <li><a href="#Menu">Tin tức</a></li>
-          <li><a href="#Gallary">Liên hệ</a></li>
-          <li><a href="#Review">Giới thiệu</a></li>
+        <ul style="margin-top:12px;">
+          <li><a href="Trangchu.php" style="text-decoration: none;">Trang chủ</a></li>
+          <li><a href="#About" style="text-decoration: none;">Sản phẩm</a></li>
+          <li><a href="#Menu" style="text-decoration: none;">Tin tức</a></li>
+          <li><a href="#Review" style="text-decoration: none;">Giới thiệu</a></li>
         </ul>
         <div class="search-container">
           <form action="/search" method="get">
@@ -49,12 +53,22 @@
           </form>
         </div>
 
+         <div class="icon-cart"> 
+        <a href="#"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
+        </div> 
+
         <div class="icon">
-          <a href="./giohang.php"
-            ><i class="fa-solid fa-cart-shopping" number="0"></i
-          ></a>
-          <a href="./Dangnhap.html" class="Login_btn">Login</a>
-        </div>
+                <?php if (isset($_SESSION['so_dien_thoai'])): ?>
+                    <div class="user-avatar" id="avatar">
+                        <img src="https://i.pinimg.com/564x/49/3f/a0/493fa0f13970ab3ef29375669f670451.jpg" alt="Avatar" id="avatar" style="margin-left: -40px; margin-right: -80px;">
+                        <div class="dropdown-menu" id="dropdown-menu">
+                            <a href="#" onclick="logout()">Đăng xuất</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="./Dangnhap_Index.php" class="Login_btn" style="margin:0 -20px 0 -50px; ">Đăng nhập</a>
+                <?php endif; ?>
+            </div>
       </nav>
     </article>
       <!-- Phần nội dung chính -->
@@ -62,12 +76,12 @@
         <!-- Tiêu đề và phần đăng nhập/đăng ký -->
         <div class="header">
           <div class="title">
-            <a href="./Trangchu.html"><h2>FRUIT STORE</h2></a>
+            <a href="Trangchu.php"><h2>FRUIT STORE</h2></a>
         </div>
         <div class="auth-section">
            <div style="display: flex;">
-            <a href="./Dangnhap.html" class="btn-login btn btn-dark">ĐĂNG NHẬP</a>
-            <a href="./Dangnhap.html" class="btn-register btn btn-light">ĐĂNG KÝ</a>
+            <a href="Dangnhap.php" class="btn-login btn btn-dark">ĐĂNG NHẬP</a>
+            <a href="Dangnhap.php" class="btn-register btn btn-light">ĐĂNG KÝ</a>
            </div>
             <p>
                 Đăng nhập/ Đăng ký tài khoản để được tích điểm và nhận thêm nhiều ưu đãi từ FRUIT STORE.
@@ -79,9 +93,9 @@
     <section>
         <div class="dieukhien">
           <ul>
-            <li><a href="./giohang.php">Giỏ hàng</a> <span> > </span></li>
+            <li><a href="giohang.php">Giỏ hàng</a> <span> > </span></li>
             <li>
-              <a href="./location.php">Thông tin giao hàng</a> <span> > </span>
+              <a href="location.php">Thông tin giao hàng</a> <span> > </span>
             </li>
             <li><a href="#">phương thức thanh toán</a></li>
           </ul>
@@ -114,14 +128,16 @@
               </label>
             </td>
           </tr>
-          <tr id="bidvqr_row" >
+          <tr id="momo_row" >
             <td>
-              <input type="radio" id="bidvqr" name="payment" value="bidvqr" />
+              <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded" action="thanhtoanmomo/xulythanhtoanmomo.php">
+               <input type="submit"  name="momo" value="Thanh Toán MoMo QRcode" class="btn btn-danger" />
+              </form>
             </td>
             <td>
-              <label for="bidvqr">
-                <img src="./Img/blobidv.jpg" alt="bidvQR" />
-                Chuyển khoản qua BIDV_QR ('Trả trước')
+              <label for="momo">
+                <img src="Img/momo2.jpg" alt="momoQR" />
+                Chuyển khoản qua MOMO_QR ('Trả trước')
               </label>
             </td>
           </tr>
@@ -191,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!ischecked) {
       alert("Vui lòng chọn một phương thức thanh toán.");
       event.preventDefault(); // Ngăn không cho mở modal nếu chưa chọn phương thức thanh toán
-      window.location.href = "./pay.html"; // Chuyển hướng về trang pay.html
+      window.location.href = "pay.php"; // Chuyển hướng về trang pay.html
     } else {
       // Hiển thị modal nếu đã chọn phương thức thanh toán
       $('#myModal').modal('show');
@@ -202,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
   $('#myModal').on('shown.bs.modal', function (e) {
     // Thêm sự kiện click cho nút "OK" trong modal
     $('#modalOKButton').on('click', function() {
-      window.location.href = "./pay.html"; // Chuyển hướng về trang pay.html khi ấn nút "OK"
+      window.location.href = "pay.php"; // Chuyển hướng về trang pay.html khi ấn nút "OK"
     });
   });
 });
@@ -212,6 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <!-- js -->
       </form>
     </section>
+    <form action="" method="post"></form>
     <!-- Phần cuối trang web -->
     <!-- ---------------Footer---------------- -->
     <footer>
@@ -265,5 +282,29 @@ document.addEventListener("DOMContentLoaded", function () {
         updateCartIcon();
       });
     </script>
+
+<script>
+        document.getElementById('avatar').addEventListener('click', function() {
+            var dropdownMenu = document.getElementById('dropdown-menu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        function logout() {
+            window.location.href = 'Dangxuat.php';
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('#avatar')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+
   </body>
 </html>

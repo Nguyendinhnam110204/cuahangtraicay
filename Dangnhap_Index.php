@@ -20,21 +20,22 @@
         </div>
         <div class="form-box">
             <div class="form signinform">
-                <form>
+                <form action="DangNhap.php" method="post">
                     <h3>Đăng nhập</h3>
-                    <input type="text" placeholder="Tên đăng nhập">
-                    <input type="password" placeholder="Mật khẩu">
+                    <input type="text" placeholder="Số điện thoại" name="so_dien_thoai" required>
+                    <input type="password" placeholder="Mật khẩu" name="mat_khau" required>
                     <input type="submit" value="Đăng nhập">
-                    <a href="./Quenmatkhau.html">Quên mật khẩu?</a>
+                    <a href="./Quenmatkhau_IndexEmail.php">Quên mật khẩu?</a>
                 </form>
             </div>
             <div class="form signupform">
-                <form>
+                <form action="DangKy.php" method="post">
                     <h3>Đăng ký</h3>
-                    <input type="text" placeholder="Tên đăng nhập">
-                    <input type="email" placeholder="Địa chỉ Email">
-                    <input type="password" placeholder="Mật khẩu">
-                    <input type="password" placeholder="Nhập lại mật khẩu">
+                    <input type="text" placeholder="Họ và tên" name="ho_ten" required>
+                    <input type="text" placeholder="Số điện thoại" name="so_dien_thoai" required>
+                    <input type="email" placeholder="Địa chỉ Email" name="email" required>
+                    <input type="password" placeholder="Mật khẩu" name="mat_khau" required>
+                    <input type="password" placeholder="Nhập lại mật khẩu" name="nhap_lai_mat_khau" required>
                     <input type="submit" value="Đăng ký">
                 </form>
             </div>

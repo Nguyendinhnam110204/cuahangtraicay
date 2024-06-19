@@ -19,7 +19,7 @@ session_start();
                 <img src="https://img.freepik.com/premium-vector/fresh-fruit-logo_25327-200.jpg?w=2000">
             </div>
 
-            <ul style="margin-left: 130px">
+            <ul style="margin-left: 190px">
                 <li><a href="#Home">Trang chủ</a></li>
                 <li><a href="#About">Sản phẩm</a></li>
                 <li><a href="#Menu">Tin tức</a></li>

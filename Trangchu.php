@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fruit store</title>
-    <link rel="stylesheet" href="./Style/Trangchu.css" />
+    <link rel="stylesheet" href="./Style/Trangchu.css?v = <?php echo time();?>" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -39,14 +39,15 @@ session_start();
               <i class="fa-solid fa-magnifying-glass" style="margin-left:-1px"></i>
             </button>
           </form>
+          
         </div>
 
-        <!-- <div class="icon"> -->
+         <div class="icon-cart"> 
           <!-- mới phần giỏ hàng -->
             <a href="giohang.php" target="_self">
                 <i class="fa-solid fa-cart-shopping" number="0"></i>
             </a>
-        <!-- </div> -->
+        </div> 
 
         <div class="icon">
                 <?php if (isset($_SESSION['so_dien_thoai'])): ?>

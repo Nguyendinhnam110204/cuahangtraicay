@@ -53,9 +53,9 @@ session_start();
           </form>
         </div>
 
-        <!-- <div class="icon"> -->
+         <div class="icon-cart"> 
         <a href="#"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
-        <!-- </div> -->
+        </div> 
 
         <div class="icon">
                 <?php if (isset($_SESSION['so_dien_thoai'])): ?>
@@ -76,12 +76,12 @@ session_start();
         <!-- Tiêu đề và phần đăng nhập/đăng ký -->
         <div class="header">
           <div class="title">
-            <a href="./Trangchu.html"><h2>FRUIT STORE</h2></a>
+            <a href="Trangchu.php"><h2>FRUIT STORE</h2></a>
         </div>
         <div class="auth-section">
            <div style="display: flex;">
-            <a href="./Dangnhap.html" class="btn-login btn btn-dark">ĐĂNG NHẬP</a>
-            <a href="./Dangnhap.html" class="btn-register btn btn-light">ĐĂNG KÝ</a>
+            <a href="Dangnhap.php" class="btn-login btn btn-dark">ĐĂNG NHẬP</a>
+            <a href="Dangnhap.php" class="btn-register btn btn-light">ĐĂNG KÝ</a>
            </div>
             <p>
                 Đăng nhập/ Đăng ký tài khoản để được tích điểm và nhận thêm nhiều ưu đãi từ FRUIT STORE.
@@ -93,9 +93,9 @@ session_start();
     <section>
         <div class="dieukhien">
           <ul>
-            <li><a href="./giohang.php">Giỏ hàng</a> <span> > </span></li>
+            <li><a href="giohang.php">Giỏ hàng</a> <span> > </span></li>
             <li>
-              <a href="./location.php">Thông tin giao hàng</a> <span> > </span>
+              <a href="location.php">Thông tin giao hàng</a> <span> > </span>
             </li>
             <li><a href="#">phương thức thanh toán</a></li>
           </ul>
@@ -128,7 +128,7 @@ session_start();
               </label>
             </td>
           </tr>
-          <tr id="bidvqr_row" >
+          <tr id="momo_row" >
             <td>
               <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded" action="thanhtoanmomo/xulythanhtoanmomo.php">
                <input type="submit"  name="momo" value="Thanh Toán MoMo QRcode" class="btn btn-danger" />

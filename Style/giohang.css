@@ -16,7 +16,7 @@ article {
 
 article nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   right: 0;
@@ -24,16 +24,21 @@ article nav {
   background: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  padding: 0 20px;
 }
 
 article nav .logo img {
   width: 80px;
   cursor: pointer;
   margin: 7px 0;
+  margin-left: 70px;
 }
 
 article nav ul {
   list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 article nav ul li {
@@ -47,6 +52,7 @@ article nav ul li a {
   font-weight: 500;
   font-size: 17px;
   transition: 0.1s;
+  margin-left: 20px;
 }
 
 article nav ul li a::after {
@@ -79,7 +85,7 @@ article nav .icon i:hover {
 }
 
 article nav .icon a {
-  margin-left: 20px;
+  margin-left: 10px;
   padding: 8px 20px;
   background: #fac031;
   border-radius: 8px;
@@ -93,47 +99,65 @@ article nav .icon a i {
   position: relative;
 }
 
-article i{
+article i {
   font-size: 18px;
-    color: #000;
-    margin: 0 -5px 0 20px;
-    cursor: pointer;
-    transition: 0.3s;
+  color: #000;
+  margin: 0 -5px 0 20px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-article i:hover{
+article i:hover {
   color: #fac031;
 }
 
-article nav .icon a i::after {
+article nav .icon-cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+article nav .icon-cart a i {
+  font-size: 24px; /* Adjust as needed */
+  position: relative;
+}
+
+article nav .icon-cart a i::after {
   content: attr(number);
   position: absolute;
   display: flex;
   width: 20px;
   height: 20px;
   background-color: orange;
+  color: white;
   right: -10px;
-  top: -12px;
+  top: -10px;
   border-radius: 50%;
-  font-size: small;
+  font-size: 14px;
   justify-content: center;
   align-items: center;
 }
-article nav .icon a:hover {
-  color: #000;
-  background: orange;
-}
-/* mới */
-article nav .icon a:first-child {
+
+article nav .icon-cart a {
+  position: relative;
   background: none;
   padding: 0;
+  display: flex;
+  margin-left: -100px;
 }
-/* mới */
+
+article nav .icon-cart a:hover i {
+  color: #fac031;
+}
+
+article nav .icon-cart a:hover::after {
+  background-color: orange;
+}
+
 article .search-container {
   display: flex;
   align-items: center;
-  margin-right: -270px;
-  margin-left: -250px;
+  margin-right: -5px;
 }
 
 article .search-container input[type="text"] {
@@ -164,7 +188,7 @@ article .search-container button:hover {
 }
 
 .user-avatar img {
-  width: 80px;  /* Adjust the width as needed */
+  width: 80px; /* Adjust the width as needed */
   border-radius: 50%;
   cursor: pointer;
 }

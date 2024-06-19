@@ -84,9 +84,9 @@ session_start();
           </form>
         </div>
 
-        <!-- <div class="icon"> -->
+         <div class="icon-cart"> 
         <a href="#"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
-        <!-- </div> -->
+         </div>
 
         <div class="icon">
                 <?php if (isset($_SESSION['so_dien_thoai'])): ?>

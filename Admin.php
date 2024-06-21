@@ -35,7 +35,7 @@
                     </a>
                     <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Sản phẩm</a>
+                            <a href="http://localhost/projectfruits/cuahangtraicay/quanlysanpham.php" class="sidebar-link">Sản phẩm</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="Admin.php?page=CTKM" class="sidebar-link">Chương trình khuyến mãi</a>

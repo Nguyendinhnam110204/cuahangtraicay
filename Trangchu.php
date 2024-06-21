@@ -7,8 +7,13 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< Updated upstream:Trangchu.php
     <title>Document</title>
     <link rel="stylesheet" href="./Style/Trangchu.css?v = <?php echo time();?>">
+=======
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="./Style/Trangchu.css">
+>>>>>>> Stashed changes:Trangchu.html
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -16,12 +21,16 @@ session_start();
     <section>
         <nav>
             <div class="logo">
+<<<<<<< Updated upstream:Trangchu.php
                 <img src="https://img.freepik.com/premium-vector/fresh-fruit-logo_25327-200.jpg?w=2000">
+=======
+                <img src="./Img/snapedit_1716797293114.jpeg">
+>>>>>>> Stashed changes:Trangchu.html
             </div>
 
             <ul style="margin-left: 130px">
                 <li><a href="#Home">Trang chủ</a></li>
-                <li><a href="#About">Sản phẩm</a></li>
+                <li><a href="./menu.html">Sản phẩm</a></li>
                 <li><a href="#Menu">Tin tức</a></li>
                 <li><a href="#Review">Giới thiệu</a></li>
             </ul>
@@ -275,7 +284,7 @@ session_start();
             </div>
 
             <div class="footer_tag">
-                <h2>CHÍNH SÁCH - QUY ĐỊNH</h2>
+                <h2 >CHÍNH SÁCH - QUY ĐỊNH</h2>
                 <p><i class="fa-solid fa-angle-right"></i>HƯỚNG DẪN ĐẶT HÀNG VÀ THANH TOÁN</p>
                 <p><i class="fa-solid fa-angle-right"></i>CHÍNH SÁCH GIAO HÀNG VÀ ĐỔI TRẢ</p>
                 <p><i class="fa-solid fa-angle-right"></i>CHÍNH SÁCH BẢO MẬT THÔNG TIN</p>
@@ -283,10 +292,10 @@ session_start();
 
             <div class="footer_tag">
                 <h2>Follows</h2>
-                <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#" target="_blank"><i class="fa-brands fa-facebook-messenger"></i></a>
-                <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.messenger.com/t/101520886067712/" target="_blank"><i class="fa-brands fa-facebook-messenger"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
             </div>
         </div>
     </footer>

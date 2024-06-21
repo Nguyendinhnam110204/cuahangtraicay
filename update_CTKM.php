@@ -15,5 +15,5 @@
         //thuc thi cau lenh them
         mysqli_query($conn, $update_sql);
 
-        header("Location: Admin.php?page=CTKM");
+        header("Location: Admin.php?page=CTKM ");
 ?>

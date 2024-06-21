@@ -2,7 +2,7 @@
 //lấy ma_don_hang xuống;
 $id_ma_don_hang = $_GET['get_ma_don'];
 //gọi file kết nối
-require_once '../connect.php';
+require_once './connect.php';
 
 //lấy thông tin dựa vào mã;
 $select_chitiet = "SELECT dh.ma_don_hang, 
@@ -125,7 +125,7 @@ if (mysqli_num_rows($result) > 0) {
                 </div>
                 <!-- Modal Sửa -->
                 <div class="modal-body">
-                    <form action="../thao_tac_admin/update_chitietdonhang.php" method="post">
+                    <form action="./thao_tac_admin/update_chitietdonhang.php" method="post">
                     <div class="form-group">
                             <input type="hidden" name="ma_don_hang" value="<?php echo $row['ma_don_hang']; ?>">
                         </div>

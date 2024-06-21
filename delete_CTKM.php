@@ -11,7 +11,7 @@
     echo "xóa thành công";
 
     //tro ve trang list
-    header("Location: ../admin/Admin.php?page=CTKM");
+    header("Location: Admin.php?page=CTKM");
 
     //close ket noi 
     mysqli_close($conn);

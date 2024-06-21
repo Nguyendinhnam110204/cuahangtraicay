@@ -28,7 +28,6 @@ session_start();
           <li><a href="#Menu" style="text-decoration: none;">Tin tức</a></li>
           <li><a href="#Review" style="text-decoration: none;">Giới thiệu</a></li>
         </ul>
-
         <div class="search-container">
           <form action="/search" method="get">
             <input type="text" placeholder="Tìm kiếm..." name="query" />
@@ -37,8 +36,6 @@ session_start();
             </button>
           </form>
         </div>
-
-        
         <div class="icon-cart">
          <a href="#"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
         </div>
@@ -226,7 +223,6 @@ session_start();
 
     </script>
 <script src="./JS/giohang.js"></script>
-
 
 <script>
         document.getElementById('avatar').addEventListener('click', function() {

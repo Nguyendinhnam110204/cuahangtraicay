@@ -15,16 +15,32 @@ if(isset($_POST['btnapdung_KM']) && isset($_POST['voucher'])){
 }
 }
 
-$phivanchuyen = 30000;
+$phivanchuyen = 0;
+if (isset($_POST['shippingFee'])) {
+    $phivanchuyen = (int)$_POST['shippingFee'];
+} else {
+    // Default shipping fee if not set
+    // $phivanchuyen = 40000;
+    // if (isset($_GET['province']) && $_GET['province'] === '1') { // assuming '1' is the ID for Hà Nội
+    //     $phivanchuyen = 30000;
+    // }
+    $phivanchuyen=0;
+}
 // Khởi tạo biến $tam_tinh ban đầu là 0
 $tam_tinh = 0;
 // Kiểm tra xem giá trị 'cartTotalPrice' có tồn tại trong mảng $_POST hay không
 if (isset($_POST['cartTotalPrice'])) {
     // Nếu 'cartTotalPrice' tồn tại, lấy giá trị này từ $_POST và gán cho $tam_tinh
     $tam_tinh = (int)$_POST['cartTotalPrice'] ;
-    $tam_tinh = $tam_tinh - $giam_gia;
+    $tam_tinh -= $giam_gia; 
 } 
 $tong_tien = $tam_tinh+$phivanchuyen;
+
+// <!-- tỉnh thành vn -->
+
+$sql_city = "SELECT * FROM province";
+$result_city = mysqli_query($conn,$sql_city);
+
 // đóng kết nối
 mysqli_close($conn);
 ?>
@@ -61,6 +77,8 @@ session_start();
 
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- api loc quan huyen -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
   </head>
   <body>
     <!-- Phần đầu trang web -->
@@ -85,7 +103,7 @@ session_start();
         </div>
 
          <div class="icon-cart"> 
-        <a href="#"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
+        <a href="giohang.php"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
          </div>
 
         <div class="icon">
@@ -110,8 +128,8 @@ session_start();
         </div>
         <div class="auth-section">
            <div style="display: flex;">
-            <a href="Dangnhap.php" class="btn-login btn btn-dark">ĐĂNG NHẬP</a>
-            <a href="Dangnhap.php" class="btn-register btn btn-light">ĐĂNG KÝ</a>
+            <a href="Dangnhap_Index.php" class="btn-login btn btn-dark">ĐĂNG NHẬP</a>
+            <a href="Dangnhap_Index.php" class="btn-register btn btn-light">ĐĂNG KÝ</a>
            </div>
             <p>
                 Đăng nhập/ Đăng ký tài khoản để được tích điểm và nhận thêm nhiều ưu đãi từ FRUIT STORE.
@@ -128,9 +146,10 @@ session_start();
           <h2>Thông tin giao hàng</h2>
         </div>
       </div>
-      <!-- noidung -->
-      <form action="" method = "post">
-      <input type="hidden" id="cartTotalPriceInput" name="cartTotalPrice" value="" />
+      <div style="display:flex; justify-content: center">
+        <!-- noidung -->
+      <form id="checkoutForm" action="" method = "get">
+      
         <table class="add_KH">
           <tr >
             <td colspan="3">
@@ -144,7 +163,8 @@ session_start();
                 type="text"
                 id="name"
                 name="txtname"
-                value="<?php echo isset($_POST['txtname']) ? $_POST['txtname'] : ''; ?>"
+              
+                value="<?php echo isset($_GET['txtname']) ? $_GET['txtname'] : ''; ?>"
               />
             </td>
           </tr>
@@ -158,17 +178,19 @@ session_start();
                     type="email"
                     id="email"
                     name="txtemail"
-                    value="<?php echo isset($_POST['txtemail']) ? $_POST['txtemail'] : ''; ?>"
+                   
+                    value="<?php echo isset($_GET['txtemail']) ? $_GET['txtemail'] : ''; ?>"
                   />
                 </div>
                 <div>
-                  <label for="phone">Số điện thoại</label>
+                  <label for="phone" style="margin-left:98px;">Số điện thoại</label>
                   <input
                     class="phone"
                     type="text"
                     id="phone"
                     name="txtphone"
-                    value="<?php echo isset($_POST['txtphone']) ? $_POST['txtphone'] : ''; ?>"
+                    
+                    value="<?php echo isset($_GET['txtphone']) ? $_GET['txtphone'] : ''; ?>"
                   />
                 </div>
               </div>
@@ -186,55 +208,39 @@ session_start();
                 type="text"
                 id="address"
                 name="txtaddress"
-                value ="<?php echo isset($_POST['txtaddress']) ? $_POST['txtaddress'] : ''; ?>"
+                required
+                value ="<?php echo isset($_GET['txtaddress']) ? $_GET['txtaddress'] : ''; ?>"
               />
             </td>
           </tr>
           <tr id="info_an2" style="display: flex">
-            <td colspan="3">
-              <select id="city" name="city">
-                <option value="">Chọn tỉnh / thành</option>
-                <!-- Thêm các tùy chọn khác vào đây -->
-              </select>
-            </td>
-            <td colspan="3">
-              <select id="district" name="district">
-                <option value="">Chọn quận / huyện</option>
-                <!-- Thêm các tùy chọn khác vào đây -->
-                 
-              </select>
-            </td>
-            <td colspan="3">
-              <select id="ward" name="ward">
-                <option value="">Chọn phường / xã</option>
-
-                <!-- Thêm các tùy chọn khác vào đây -->
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="3" style="display: flex; text-align: right">
-              <input type="checkbox" id="ckbstore" name="ckbstore" <?php if(isset($_POST['ckbstore'])) echo "checked"; ?> />
-              <label style="margin-left: 7px" for="ckbstore"
-                >Nhận tại cửa hàng</label
-              >
-            </td>
-          </tr>
-          <tr id="storeInfomation" style="<?php if(isset($_POST['ckbstore'])) echo 'display: block'; else echo 'display: none'; ?>" >
-            <td colspan="3">
-              <div style="justify-content: center; text-align: center">
-                <p >
-                  Địa chỉ: Số 16 Nguyễn Xiển - Phường Thanh Xuân Nam - Quận
-                  Thanh Xuân- Hà Nội
-                </p>
-                <p>Sđt: 0941234789 - 0942568456</p>
-              </div>
-            </td>
+           <td>
+           <div class="province-district-ward">
+            <select name="province" id="province"  required>
+            <option  value="">chọn một tỉnh</option>
+              <?php
+              while($row_city = mysqli_fetch_assoc($result_city)){
+              echo '<option value="' . $row_city['province_id'] . '"' . (isset($_POST['province']) && $_POST['province'] == $row_city['province_id'] ? ' selected' : '') . '>' . $row_city['name'] . '</option>';
+              }
+              ?>
+            </select>
+            <select name="district" id="district" required>
+              <option value="">Quận/Huyện</option>
+            </select>
+            <select name="wards" id="wards" required>
+              <option value="">Phường/Xã</option>
+            </select>
+          </div>
+           </td>
           </tr>
         </table>
-        <!-- table-left -->
-        <table class="ship">
-          
+        </form>
+        
+        <form action="" method="post">
+        <input type="hidden" id="cartTotalPriceInput" name="cartTotalPrice" value="" />
+        <input type="hidden" id="cartvanchuyenInput" name="shippingFee" value="0" />
+          <!-- table-left -->
+        <table class="ship" style="height: 50px;">
             <tr>
             <td style="display: flex">
               <select id="voucher" name="voucher">
@@ -242,7 +248,7 @@ session_start();
                 <?php 
                 while($rows_KM = mysqli_fetch_assoc($result)){
                  
-                  echo '<option value="' . $rows_KM['ma_khuyen_mai'] . '">' . $rows_KM['ten_khuyen_mai'] . '</option>';
+                  echo '<option value="' . $rows_KM['ma_khuyen_mai'] . '"' . (isset($_POST['voucher']) && $_POST['voucher'] == $rows_KM['ma_khuyen_mai'] ? ' selected' : '') . '>' . $rows_KM['ten_khuyen_mai'] . '</option>';
                 
                 }
                 ?>
@@ -253,45 +259,35 @@ session_start();
               </div>
             </td>
           </tr>
-          
           <tr>
             <td>Giảm</td>
             <td>
-              <div class="giam_gia"><span id="giamgia-value" ><?php echo $giam_gia; ?></span><sup>đ</sup></div>
+              <div class="giam_gia"><span id="giamgia-value" ><?php echo number_format($giam_gia, 0, ',', '.'); ?></span><sup>đ</sup></div>
             </td>
           </tr>
           <tr>
             <td>Tạm tính</td>
             <td>
-              <div class="tamtinh"><span id="tamtinh-value" ><?php echo $tam_tinh; ?> </span><sup>đ</sup></div>
+              <div class="tamtinh"><span id="tamtinh-value" ><?php echo number_format($tam_tinh, 0, ',', '.'); ?> </span><sup>đ</sup></div>
             </td>
           </tr>
           <tr>
             <td>Phí vận chuyển</td>
             <td>
-              <div class="phivanchuyen"><span><?php echo $phivanchuyen; ?></span><sup>đ</sup></div>
+              <div class="phivanchuyen"><span id="shippingFee" ><?php echo number_format($phivanchuyen, 0, ',', '.'); ?></span><sup>đ</sup></div>
             </td>
           </tr>
           <tr>
             <td><strong>Tổng tiền</strong></td>
             <td>
-              <strong class="tongtien"><span id="total-value"><?php echo $tong_tien; ?></span><sup>đ</sup></strong>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <div class="buttun_thanhtoan">
-                <input
-                  type="button"
-                  name="btnthanhtoan"
-                  value=" Hoàn tất thanh toán"
-                  onclick="pay()"
-                />
-              </div>
+              <strong class="tongtien"><span id="total-value"><?php echo number_format($tong_tien, 0, ',', '.'); ?></span><sup>đ</sup></strong>
             </td>
           </tr>
         </table>
-      </form>
+        </form>
+       
+      </div>
+      <div class="buttun_thanhtoan " style="text-align:center;"> <button type="button" class="btn btn-dark" onclick="pay()">Tiếp tục thanh toán</button></div>
     </section>
     <!-- Phần cuối trang web -->
     <!-- ---------------Footer---------------- -->
@@ -336,7 +332,22 @@ session_start();
     </footer>
     <script>
       function pay() {
-        window.location.href = "./pay.php";
+        
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var phone = document.getElementById('phone').value;
+    var address = document.getElementById('address').value;
+    var province = document.getElementById('province').value;
+    var district = document.getElementById('district').value;
+    var wards = document.getElementById('wards').value;
+
+  
+    if (!name || !email || !phone || !address || !province || !district || !wards) {
+        alert('Vui lòng điền đầy đủ thông tin.');
+        return;
+    }
+
+    window.location.href = "./pay.php";
       }
 
       document.addEventListener("DOMContentLoaded", (event) => {
@@ -347,23 +358,60 @@ session_start();
         }
         // Gọi hàm để cập nhật biểu tượng giỏ hàng khi tải trang
         updateCartIcon();
-
-        function setCartTotalPrice(){
-           // Lấy giá trị từ localStorage
-           var cartTotalPrice = localStorage.getItem("cartTotalPrice");
-            // Đặt giá trị vào input ẩn
-            document.getElementById("cartTotalPriceInput").value = cartTotalPrice;
-            var tamTinhValue = parseInt(cartTotalPrice) || 0;
- var giamGiaValue = parseInt(document.getElementById("giamgia-value").innerText) || 0;
- var phiVanChuyenValue = parseInt(document.querySelector(".phivanchuyen span").innerText) || 0;
-
-var tamTinh = tamTinhValue - giamGiaValue;
- var tongTien = tamTinh + phiVanChuyenValue;
-
-document.getElementById("tamtinh-value").innerText = tamTinh;
- document.getElementById("total-value").innerText = tongTien;
+        function updateShippingFee() {
+        var province = document.getElementById("province").options[document.getElementById("province").selectedIndex].text;
+        var shippingFee = 0; 
+        if (province === "Hà Nội") {
+            shippingFee = 30000;
+        }else if(province === "chọn một tỉnh"){
+          shippingFee = 0;
+        }else{
+          shippingFee = 40000;
         }
+        document.getElementById("shippingFee").innerText = shippingFee.toLocaleString("vi-VN");
+        
+        document.getElementById("cartvanchuyenInput").value = shippingFee;
+        updateTotalAmount(); 
+    }
+
+    function setCartTotalPrice() {
+      
+        var cartTotalPrice = localStorage.getItem("cartTotalPrice") || 0;
+        
+        document.getElementById("cartTotalPriceInput").value = cartTotalPrice;
+
+        
+        var tamTinhValue = parseInt(cartTotalPrice) || 0;
+        var giamGiaValue = parseInt(document.getElementById("giamgia-value").textContent.replace(/\D/g, '')) || 0;
+        var phiVanChuyenValue = parseInt(document.getElementById("shippingFee").textContent.replace(/\D/g, '')) || 0;
+
+        
+        var tamTinh = tamTinhValue - giamGiaValue;
+        var tongTien = tamTinh + phiVanChuyenValue;
+
+     
+        document.getElementById("tamtinh-value").innerText = tamTinh.toLocaleString('vi-VN');
+        document.getElementById("total-value").innerText = tongTien.toLocaleString('vi-VN');
+
+        
+        localStorage.setItem("totalAmountToPay", tongTien);
+    }
+
+    function updateTotalAmount() {
         setCartTotalPrice();
+    }
+
+    // Call updateShippingFee initially
+    updateShippingFee();
+
+    // Attach change event listener to province dropdown
+    document.getElementById("province").addEventListener("change", function() {
+        updateShippingFee();
+    });
+
+    // Call setCartTotalPrice initially
+    setCartTotalPrice();
+   // Xử lý việc gửi biểu mẫu
       });
     </script>
 
@@ -389,8 +437,8 @@ document.getElementById("tamtinh-value").innerText = tamTinh;
             }
         }
     </script>
-
-    <script src="JS/location.js"></script>
+    <script src="JS/add.js"></script>
+    <script src="JS/diachi.js"></script>
   </body>
 </html>
 

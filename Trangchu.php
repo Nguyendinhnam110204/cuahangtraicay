@@ -28,7 +28,7 @@ session_start();
 >>>>>>> Stashed changes:Trangchu.html
             </div>
 
-            <ul style="margin-left: 130px">
+            <ul style="margin-left: 190px">
                 <li><a href="#Home">Trang chủ</a></li>
                 <li><a href="./menu.html">Sản phẩm</a></li>
                 <li><a href="#Menu">Tin tức</a></li>

@@ -217,7 +217,6 @@ article .dropdown-menu a:hover {
 }
 
 /* thanbai */
-
 .title {
   margin-top: 30px;
   margin-left: 70px;
@@ -244,54 +243,48 @@ article .dropdown-menu a:hover {
 .dieukhien ul {
   list-style: none;
 }
-/* bảng */
-
-section > form {
-  width: 100%;
+section {
   display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
 }
-
+/* table-left */
 section > form > .add_KH {
-  width: 60%;
   border-collapse: collapse;
   margin-left: 60px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   justify-content: center;
 }
-section > form > .add_KH > tr > td {
+section div > form > .add_KH > tr > td {
   padding: 2px;
 }
 .ten {
-  width: 80%;
+  width: 99%;
   padding: 5px;
   margin: 5px 0;
   font-size: 15px;
 }
 
 .address {
-  width: 280%;
+  width: 345%;
   padding: 5px;
   margin: 5px 0;
   font-size: 15px;
 }
 .email {
-  width: 94%;
+  width: 120%;
   padding: 5px;
   margin: 5px 0;
   font-size: 15px;
 }
 .phone {
+  margin-left: 99px;
   padding: 5px;
   font-size: 15px;
-  width: 60%;
+  width: 70%;
   display: block;
 }
 select {
   width: 100%;
-
   padding: 5px 0;
   margin: 5px 0;
   font-size: 15px;
@@ -300,22 +293,36 @@ section form .add_KH #info_an2 td select option {
   text-align: center;
 }
 section form .add_KH #info_an2 td #district {
-  margin-left: 35px;
-  width: 160px;
+  margin-left: 25px;
+  width: 210px;
 }
-section form .add_KH #info_an2 td #ward {
-  margin-left: 35px;
-  width: 160px;
+section form .add_KH #info_an2 td #wards {
+  margin-left: 25px;
+  width: 210px;
 }
-section form .add_KH #info_an2 td #city {
+section form .add_KH #info_an2 td #province {
   text-align: right;
-  width: 160px;
+  width: 200px;
 }
 label {
   display: block;
   margin: 5px 0;
 }
-/* table-left */
+.buttun_thanhtoan .btn-dark {
+  margin: 3px;
+  border: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 50px;
+  height: 50px;
+  width: 200px;
+}
+.buttun_thanhtoan button:hover {
+  background-color: orange;
+}
+
 form .info_row {
   display: flex;
   justify-content: space-between;
@@ -326,8 +333,9 @@ form .info_row div {
   margin: 5px;
 }
 section form .ship {
-  width: 60%;
-  margin-left: 45px;
+  margin-top: 22px;
+  width: 100%;
+  margin-left: 80px;
   padding-left: 50px;
 }
 
@@ -340,6 +348,7 @@ section form .ship tr td {
 section form .ship td select {
   height: 40px;
   margin-top: 10px;
+  width: 250px;
 }
 section form .ship td select option {
   text-align: center;
@@ -347,22 +356,7 @@ section form .ship td select option {
 .tamtinh {
   margin-right: 90px;
 }
-.buttun_thanhtoan input {
-  margin: 10px;
-  border: none;
-  background-color: black;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  height: 50px;
-  width: 150px;
-}
-.buttun_thanhtoan input:hover {
-  background-color: orange;
-}
-.buttun_thanhtoan {
-  text-align: center;
-}
+
 .button_apdung button {
   margin: 10px;
   border: none;

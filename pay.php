@@ -54,7 +54,7 @@ session_start();
         </div>
 
          <div class="icon-cart"> 
-        <a href="#"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
+        <a href="giohang.php"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
         </div> 
 
         <div class="icon">
@@ -104,13 +104,13 @@ session_start();
           <h3>Hãy chọn phương thức thanh toán</h3>
         </div>
       </div>
-      <form action="">
+      <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded" action="thanhtoanmomo/xulythanhtoanmomo.php">
+        <!-- chứa giá trị tổng tiền -->
+      <input type="hidden" id="cartTotalPriceInput" name="cartTotalPrice" value="" />
         <table class="pay_table">
           <tr>
             <td>
-              <input type="radio" id="cod" name="payment" value="cod" />
-            </td>
-            <td>
+               <input type="radio" id="cod" name="payment" value="cod" />
               <label for="cod">
                 <img src="./Img/cod2.jpg" alt="COD" />
                 Thanh toán khi giao hàng  ('Trả Sau')
@@ -120,8 +120,6 @@ session_start();
           <tr>
             <td>
               <input type="radio" id="cash" name="payment" value="cash" />
-            </td>
-            <td>
               <label for="cash">
                 <img src="./Img/Airtel-Business-Solution-Graphics-5.webp" alt="cash"  />
                 Thanh toán tại cửa hàng ('Trả Sau')
@@ -130,19 +128,17 @@ session_start();
           </tr>
           <tr id="momo_row" >
             <td>
-              <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded" action="thanhtoanmomo/xulythanhtoanmomo.php">
-               <input type="submit"  name="momo" value="Thanh Toán MoMo QRcode" class="btn btn-danger" />
-              </form>
-            </td>
-            <td>
-              <label for="momo">
+              <div>
+                 <input style="height:40px;" type="submit"  name="momo" value="Thanh Toán MoMo QRcode" class="btn btn-danger" />
+              </div>
+               <label for="momo">
                 <img src="Img/momo2.jpg" alt="momoQR" />
                 Chuyển khoản qua MOMO_QR ('Trả trước')
               </label>
             </td>
           </tr>
         </table>
-        <div id="bidv" style="display: none; text-align: center">
+        <!-- <div id="bidv" style="display: none; text-align: center">
           <img style="width: 460px" src="./Img/IMG_0428.JPG" alt="" />
           <div class="contentck">
             <p class="noidung">
@@ -150,7 +146,7 @@ session_start();
             </p>
             <p class="vidu">VD : CK+0123456789+nguyenvana+16nguyenxien</p>
           </div>
-        </div>
+        </div> -->
 
 
 <!-- bootrap  -->
@@ -185,7 +181,8 @@ session_start();
     </div>
   </div>
   
-</div>
+</div>  
+ </form>
 <!-- bootrap 4  -->
 
         <!-- js -->
@@ -226,50 +223,9 @@ document.addEventListener("DOMContentLoaded", function () {
        </script>
 
         <!-- js -->
-      </form>
+   
     </section>
-    <form action="" method="post"></form>
-    <!-- Phần cuối trang web -->
-    <!-- ---------------Footer---------------- -->
-    <footer>
-      <div class="footer_main">
-        <div class="footer_tag">
-          <h2>THÔNG TIN CỬA HÀNG</h2>
-          <p>
-            Địa chỉ: Số 16 Nguyễn Xiển - Phường Thanh Xuân Nam - Quận Thanh Xuân
-            - Hà Nội
-          </p>
-          <p>Email: nguyendinhnam204211@gmail.com</p>
-          <p>Sđt: 0941234789 - 0942568456</p>
-          <p>Giấy chứng nhận ĐKKD số: 41A6003434 | Ngày cấp: 1/1/2024</p>
-        </div>
-
-        <div class="footer_tag">
-          <h2>CHÍNH SÁCH - QUY ĐỊNH</h2>
-          <p>
-            <i class="fa-solid fa-angle-right"></i>HƯỚNG DẪN ĐẶT HÀNG VÀ THANH
-            TOÁN
-          </p>
-          <p>
-            <i class="fa-solid fa-angle-right"></i>CHÍNH SÁCH GIAO HÀNG VÀ ĐỔI
-            TRẢ
-          </p>
-          <p>
-            <i class="fa-solid fa-angle-right"></i>CHÍNH SÁCH BẢO MẬT THÔNG TIN
-          </p>
-        </div>
-
-        <div class="footer_tag">
-          <h2>Follows</h2>
-          <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#" target="_blank"
-            ><i class="fa-brands fa-facebook-messenger"></i
-          ></a>
-          <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-        </div>
-      </div>
-    </footer>
+   
     <script>
           document.addEventListener("DOMContentLoaded", (event) => {
         function updateCartIcon() {
@@ -280,6 +236,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Gọi hàm để cập nhật biểu tượng giỏ hàng khi tải trang
         updateCartIcon();
+
+
+        function setCartTotalPrice(){
+          // Lấy giá trị từ localStorage
+          var cartTotalPrice = localStorage.getItem("totalAmountToPay");
+            // Đặt giá trị vào input ẩn
+          document.getElementById("cartTotalPriceInput").value = cartTotalPrice;
+        }
+        setCartTotalPrice();
       });
     </script>
 

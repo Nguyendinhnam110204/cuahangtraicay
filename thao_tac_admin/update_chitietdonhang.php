@@ -48,6 +48,6 @@ if ($pttt_result && mysqli_num_rows($pttt_result) > 0) {
     }
 }
  //quay lại trang ban đầu
- header("Location: ../admin/chitietdonhang.php?get_ma_don=$ma_don_hang");
+ header("Location: ../chitietdonhang.php?get_ma_don=$ma_don_hang");
 
 ?>

@@ -16,6 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mat_khau_moi = trim($_POST['mat_khau_moi']);
     $nhap_lai_mat_khau = trim($_POST['nhap_lai_mat_khau']);
 
+    // Kiểm tra mật khẩu mới phải dài từ 8 đến 30 ký tự và có ít nhất 1 chữ in hoa, 1 chữ số và 1 chữ thường
+    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,30}$/', $mat_khau_moi)) {
+        echo "<script>
+                alert('Mật khẩu mới không hợp lệ. Vui lòng nhập lại mật khẩu dài từ 8 đến 30 ký tự và phải có ít nhất 1 chữ in hoa, 1 chữ số và 1 chữ thường.');
+                window.location.href = 'Quenmatkhau_IndexDatLai.php';
+            </script>";
+        exit();
+    }
+
     if ($mat_khau_moi !== $nhap_lai_mat_khau) {
         echo "<script>
                 alert('Mật khẩu nhập lại không khớp. Vui lòng thử lại.');

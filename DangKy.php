@@ -24,6 +24,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
+    // Kiểm tra mật khẩu phải dài từ 8 đến 30 ký tự và có ít nhất 1 chữ in hoa, 1 chữ số và 1 chữ thường
+    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,30}$/', $mat_khau)) {
+        echo "<script>
+            if (confirm('Mật khẩu không hợp lệ. Vui lòng nhập lại mật khẩu dài từ 8 đến 30 ký tự và phải có ít nhất 1 chữ in hoa, 1 chữ số và 1 chữ thường.')) {
+                window.location.href = 'Dangnhap_Index.php';
+            }
+            </script>";
+        exit();
+    }
+
     // Kiểm tra xem mật khẩu và nhập lại mật khẩu có khớp nhau không
     if ($mat_khau !== $nhap_lai_mat_khau) {
         echo "<script>

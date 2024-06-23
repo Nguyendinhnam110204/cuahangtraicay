@@ -60,14 +60,14 @@
         <td><?php echo $r['ngay_tao']; ?></td>
         <td><?php echo $r['ngay_cap_nhat']; ?></td>
         <td><?php echo $r['ten_doi_tac']; ?></td>
-        <td><a href="Updatesp.php?ma_san_pham=<?php echo $r['ma_san_pham'];?>" class="btn btn-info">Sửa</a>
+        <td><a href="Admin.php?action=update-sp&ma_san_pham=<?php echo $r['ma_san_pham'];?>" class="btn btn-info">Sửa</a>
         <a onclick="return confirm('Bạn có muốn xóa không?');" href="xoa.php?ma_san_pham=<?php echo $r['ma_san_pham'];?>" class="btn btn-danger">Xóa</a></td>
       </tr>
       <?php
 }
     ?>
     <tr>
-        <td colspan="9"><button class="btn btn-primary"><a href="themsp.php"> Thêm</a></button></td>
+        <td colspan="9"><button class="btn btn-primary"><a href="Admin.php?action=them-sp"> Thêm</a></button></td>
     </tr>
     </tbody>
   </table>

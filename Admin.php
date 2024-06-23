@@ -37,7 +37,7 @@
                     </a>
                     <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Sản phẩm</a>
+                            <a href="Admin.php?page=sanpham" class="sidebar-link">Sản phẩm</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="Admin.php?page=CTKM" class="sidebar-link">Chương trình khuyến mãi</a>
@@ -80,6 +80,15 @@
                     if (isset($_GET['page']) && $_GET['page'] == 'CTKM') {
                          // Nếu có, bao gồm file list_TheLoai.php
                         include 'Index_CTKM.php';
+                    }else if (isset($_GET['page']) && $_GET['page'] == 'sanpham') {
+                        // Nếu có, bao gồm file list_TheLoai.php
+                       include 'quanlysanpham.php';
+                    }else if (isset($_GET['action']) && $_GET['action'] == 'update-sp') {
+                        // Nếu có tham số 'action' và nó là 'update', bao gồm file update_TheLoai.php
+                        include 'Updatesp.php';
+                    }else if (isset($_GET['action']) && $_GET['action'] == 'them-sp') {
+                        // Nếu có tham số 'action' và nó là 'update', bao gồm file update_TheLoai.php
+                        include 'themsp.php';
                     }
                 ?>
             </div>

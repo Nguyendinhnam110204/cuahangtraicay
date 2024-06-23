@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $addsql = "INSERT INTO san_pham (ma_san_pham, ten_san_pham, gia, mo_ta, url_hinh_anh, ton_kho,ma_doi_tac) 
                    VALUES ('$ma_san_pham', '$ten_san_pham', '$gia', '$mo_ta', '$url_hinh_anh', '$ton_kho','$ma_doi_tac')";
         $qr = mysqli_query($conn, $addsql);
-        header("Location: quanlysanpham.php");
+        header("Location: Admin.php?page=sanpham");
         exit();
     }
 }
@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 ?>
                             </select>
             </div>
-            <button type="submit"  class="btn btn-primary" style="margin-left: 500px;margin-top: 30px;">Thêm sản phẩm</button>
+            <button type="submit"  class="btn btn-primary" style="margin-top: 30px;">Thêm sản phẩm</button>
         </form>
         </div>
 </body>

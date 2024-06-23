@@ -56,14 +56,13 @@ $result = mysqli_query($conn, $hienthi_sql);
     <section id="Home">
         <nav>
             <div class="logo">
-                <img src="./Img/snapedit_1716797293114.jpeg">
+                <img src="Img/fresh-fruit-logo_25327-200.jpg">
             </div>
-            <ul>
-                <li><a href="./Trangchu.html">Trang chủ</a></li>
-                <li><a href="./menu.html">Sản phẩm</a></li>
-                <li><a href="#Menu">Tin tức</a></li>
-                <li><a href="#Gallary">Liên hệ</a></li>
-                <li><a href="#Review">Giới thiệu</a></li>
+            <ul style="padding-top: 15px;">
+                <li><a href="Trangchu.php" style="text-decoration: none;">Trang chủ</a></li>
+                <li><a href="menu.php" style="text-decoration: none;">Sản phẩm</a></li>
+                <li><a href="#Menu" style="text-decoration: none;">Tin tức</a></li>
+                <li><a href="#Review" style="text-decoration: none;">Giới thiệu</a></li>
             </ul>
             <div class="search-container">
                 <form action="/search" method="get">
@@ -71,9 +70,24 @@ $result = mysqli_query($conn, $hienthi_sql);
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
-            <div class="icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <a href="./Dangnhap.html" class="Login_btn">Login</a>
+            <div class="icon-cart"> 
+          <!-- mới phần giỏ hàng -->
+                <a href="giohang.php" target="_self">
+                    <i class="fa-solid fa-cart-shopping" number="0"></i>
+                </a>
+            </div> 
+
+        <div class="icon">
+                <?php if (isset($_SESSION['so_dien_thoai'])): ?>
+                    <div class="user-avatar" id="avatar">
+                        <img src="https://i.pinimg.com/564x/49/3f/a0/493fa0f13970ab3ef29375669f670451.jpg" alt="Avatar" id="avatar" style="margin-left: -40px; margin-right: -80px;">
+                        <div class="dropdown-menu" id="dropdown-menu">
+                            <a href="#" onclick="logout()">Đăng xuất</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="./Dangnhap_Index.php" class="Login_btn" style="margin:0 -20px 0 -50px; ">Đăng nhập</a>
+                <?php endif; ?>
             </div>
         </nav>
 
@@ -161,5 +175,42 @@ $result = mysqli_query($conn, $hienthi_sql);
             </div>
         </footer>
     </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        function updateCartIcon() {
+          const cartIcon = document.querySelector(".fa-cart-shopping");
+          const productCount = localStorage.getItem("cartItemCount") || 0;
+          cartIcon.setAttribute("number", productCount);
+        }
+
+        // Gọi hàm để cập nhật biểu tượng giỏ hàng khi tải trang
+        updateCartIcon();
+      });
+    </script>
+
+
+    <script>
+        document.getElementById('avatar').addEventListener('click', function() {
+            var dropdownMenu = document.getElementById('dropdown-menu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        function logout() {
+            window.location.href = 'Dangxuat.php';
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('#avatar')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>

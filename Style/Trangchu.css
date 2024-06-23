@@ -78,6 +78,20 @@ section nav i:hover {
   color: #fac031;
 }
 
+section .search-container {
+  display: flex;
+  align-items: center;
+  margin-right: -270px;
+  margin-left: -250px;
+}
+
+section .search-container input[type="text"] {
+  padding: 6px;
+  font-size: 15px;
+  border: none;
+  border-radius: 4px;
+}
+
 section nav .icon a {
   margin-left: 5px;
   padding: 8px 20px;
@@ -134,20 +148,6 @@ section nav .icon-cart a:hover i {
 
 section nav .icon-cart a:hover::after {
   background-color: orange;
-}
-
-section .search-container {
-  display: flex;
-  align-items: center;
-  margin-right: -270px;
-  margin-left: -250px;
-}
-
-section .search-container input[type="text"] {
-  padding: 6px;
-  font-size: 15px;
-  border: none;
-  border-radius: 4px;
 }
 
 .user-avatar {

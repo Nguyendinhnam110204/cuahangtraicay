@@ -121,6 +121,91 @@ section .search-container button:hover{
     color: #fac031;
 }
 
+section nav .icon-cart {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  section nav .icon-cart a {
+    text-decoration: none;
+  }
+
+  section nav .icon-cart a i {
+    color: #000;
+    font-size: 24px; /* Adjust as needed */
+    position: relative;
+    text-align: right;
+  }
+  
+  section nav .icon-cart a i::after {
+    content: attr(number);
+    position: absolute;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    background-color: orange;
+    color: white;
+    right: -10px;
+    top: -10px;
+    border-radius: 50%;
+    font-size: 14px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  section nav .icon-cart a {
+    position: relative;
+    background: none;
+    padding: 0;
+    display: flex;
+    margin-left: 50px;
+  }
+  
+  section nav .icon-cart a:hover i {
+    color: #fac031;
+  }
+  
+  section nav .icon-cart a:hover::after {
+    background-color: orange;
+  }
+  
+  .user-avatar {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-avatar img {
+    width: 80px; /* Adjust the width as needed */
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    margin: 20px -55px;
+    top: 50px;
+    right: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: #000;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: #d33e3e;
+  }
+  
+
 /* ------------------FILTER--------------------- */
 /* General styles for the filter container */
 .filter {

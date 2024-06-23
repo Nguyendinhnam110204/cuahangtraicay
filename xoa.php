@@ -7,5 +7,5 @@ require_once 'connect.php';
 
 $xoa_sql = "DELETE FROM san_pham WHERE ma_san_pham = '$ma_san_pham'";
 $qr= mysqli_query($conn,$xoa_sql);
-header("location: quanlysanpham.php");
+header("location: Admin.php?page=sanpham");
 ?>

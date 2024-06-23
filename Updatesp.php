@@ -72,7 +72,7 @@ $result = mysqli_query($conn,$edit_sql);
         }
       }
       ?>
-            <button  class="btn btn-primary" style="margin-left: 500px;margin-top: 30px;">Sửa sản phẩm</button>
+            <button  class="btn btn-primary" style="margin-top: 30px;">Sửa sản phẩm</button>
         </form>
         </div>
 </body>

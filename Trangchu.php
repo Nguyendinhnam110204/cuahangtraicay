@@ -26,8 +26,8 @@ session_start();
         </div>
 
         <ul style="margin-left: 190px">
-          <li><a href="#Home">Trang chủ</a></li>
-          <li><a href="#About">Sản phẩm</a></li>
+          <li><a href="Trangchu.php">Trang chủ</a></li>
+          <li><a href="menu.php">Sản phẩm</a></li>
           <li><a href="#Menu">Tin tức</a></li>
           <li><a href="#Review">Giới thiệu</a></li>
         </ul>

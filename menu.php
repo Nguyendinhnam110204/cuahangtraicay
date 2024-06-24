@@ -127,7 +127,11 @@ $result = mysqli_query($conn, $hienthi_sql);
     <div class="column">
         <div class="menu_box">
             <?php while ($r = mysqli_fetch_assoc($result)) { ?>
-            <form action="" method="POST" class="box">
+            <form action="./gio_hang/addtocart_menu.php" method="POST" class="box">
+            <input type="hidden" name="tensp" value="<?php echo $r['ten_san_pham']; ?>">
+            <input type="hidden" name="img" value="<?php echo $r['url_hinh_anh']; ?>">
+            <input type="hidden" name="gia" value="<?php echo $r['gia']; ?>">
+            <input type="hidden" name="id" value="<?php echo $r['ma_san_pham'] ?>">
                 <div class="menu_card">
                     <div class="menu_image">
                         <img src="Img/<?php echo $r['url_hinh_anh']; ?>" class="img">
@@ -137,8 +141,8 @@ $result = mysqli_query($conn, $hienthi_sql);
                         <h3><p class="gia">Giá <?php echo $r['gia']; ?> VND</p></h3>
                     </div>
                     <div class="button-container">
-                        <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
-                        <a class="btn btn-primary" href="chitietsanpham.php?ma_san_pham=<?php echo $r['ma_san_pham'];?> ">Chi tiết</a>
+                    <input type="submit" style="height:60px;font-size:18px;" value="Thêm Sản Phẩm vào giỏ " class="btn btn-danger" name= "btn_add_to_cart">
+                    <a class="btn btn-primary" style="height:60px;font-size:18px; margin-left:5px; " href="chitietsanpham.php?ma_san_pham=<?php echo $r['ma_san_pham'];?> ">Chi tiết</a>
                     </div>
                 </div>
             </form>

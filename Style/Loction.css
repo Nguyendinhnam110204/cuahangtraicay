@@ -230,22 +230,7 @@ article .dropdown-menu a:hover {
 .title .tieude a :hover {
   color: #fac031;
 }
-.dieukhien ul li a {
-  text-decoration: none;
-  color: #000;
-  font-weight: 500;
-  font-size: 17px;
-  transition: 0.1s;
-}
-.dieukhien ul li {
-  display: inline-block;
-}
-.dieukhien ul {
-  list-style: none;
-}
-section {
-  display: flex;
-}
+
 /* table-left */
 section > form > .add_KH {
   border-collapse: collapse;

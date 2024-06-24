@@ -65,6 +65,12 @@ $result = mysqli_query($conn,$edit_sql);
     
         <div class="container">
             <?php while ($r = mysqli_fetch_assoc($result)) { ?>
+                <form action="./gio_hang/addtocart_chitietsp.php" method="post">
+            <input type="hidden" name="tensp" value="<?php echo $r['ten_san_pham']; ?>">
+            <input type="hidden" name="img" value="<?php echo $r['url_hinh_anh']; ?>">
+            <input type="hidden" name="gia" value="<?php echo $r['gia']; ?>">
+            <input type="hidden" name="id" value="<?php echo $r['ma_san_pham'] ?>">
+            <input type="hidden" name="soluong" id="hidden-quantity" value="1">
             <div class="products">
               <div class="card">
               <div class="row">
@@ -84,9 +90,10 @@ $result = mysqli_query($conn,$edit_sql);
                  <p><?php echo $r['mo_ta']; ?></p>
                 </div>
                 <div class="purchase-info">
-                    <input type="number" min="0" value="1" max="<?php echo $r['ton_kho']; ?>"><br>
-                    <button type="button" class="btn">Thêm vào giỏ hàng</button>
+                    <input type="number" min="0" value="1" id="quantity" name="quantity" max="<?php echo $r['ton_kho'] ; ?>"onchange="updateQuantity();"><br>
+                    <input type="submit" value="Thêm Vào giỏ hàng" name= "btn_add_to_cart">
                 </div>
+                </form>
                 <div class="social-links">
                     <p>Chia sẻ: </p>
                     <a href="">
@@ -152,6 +159,12 @@ $result = mysqli_query($conn,$edit_sql);
         // Gọi hàm để cập nhật biểu tượng giỏ hàng khi tải trang
         updateCartIcon();
       });
+      //update số lượng sản phẩm 
+      function updateQuantity() {
+            const quantityInput = document.getElementById('quantity');
+            const hiddenQuantityInput = document.getElementById('hidden-quantity');
+            hiddenQuantityInput.value = quantityInput.value;
+        }
     </script>
 
 
@@ -176,6 +189,26 @@ $result = mysqli_query($conn,$edit_sql);
                 }
             }
         }
+        //kiểm tra số lượng
+        // function check() {
+        //     var quantityInput = document.getElementById('quantity');
+        //     var quantity = parseInt(quantityInput.value);
+        //     var maxQuantity = parseInt(quantityInput.max);
+
+        //     if (quantity > maxQuantity) {
+        //         alert('Số lượng sản phẩm không đủ trong kho. Vui lòng chọn lại số lượng.');
+        //         return false; // Ngăn không cho gửi biểu mẫu
+        //     }
+
+        //     // Cập nhật giá trị vào input hidden trước khi gửi biểu mẫu
+        //     document.getElementById('soluong').value = quantity;
+        //     return true;
+        // }
+
+        // function updateQuantity() {
+        //     var quantityInput = document.getElementById('quantity');
+        //     document.getElementById('soluong').value = quantityInput.value;
+        // }
     </script>
 </body>
 </html>

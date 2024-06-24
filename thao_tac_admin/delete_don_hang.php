@@ -7,7 +7,7 @@ $xoa_sql = "DELETE FROM don_hang WHERE ma_don_hang = '$ma_don_hang'";
 
 $result = mysqli_query($conn,$xoa_sql);
 
-header("Location:../order.php");
+header("Location: ../order.php");
 
 
 //dong ket noi

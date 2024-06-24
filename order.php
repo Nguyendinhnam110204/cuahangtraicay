@@ -75,6 +75,7 @@ if(isset($_POST['btn_excel'])){
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,7 +122,7 @@ if(isset($_POST['btn_excel'])){
           </a>
           <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
             <li class="sidebar-item">
-              <a href="#" class="sidebar-link">Sản phẩm</a>
+              <a href="Admin.php?page=sanpham" class="sidebar-link">Sản phẩm</a>
             </li>
             <li class="sidebar-item">
               <a href="Admin.php?page=CTKM" class="sidebar-link">Chương trình khuyến mãi</a>
@@ -205,7 +206,7 @@ if(isset($_POST['btn_excel'])){
               <td><?php echo $rows['ngay_cap_nhat']; ?></td>
               <td id="status-<?php echo $ma_don_hang; ?>"><?php echo $trang_thai; ?></td>
               <td>
-                <a href="../thao_tac_admin/delete_don_hang.php?get_ma_don=<?php echo $ma_don_hang; ?>" class="btn btn-danger" onclick="return confirm('bạn có muốn xóa không ?')"><i class="fas fa-trash-alt"></i></a>
+                <a href="./thao_tac_admin/delete_don_hang.php?get_ma_don=<?php echo $ma_don_hang; ?>" class="btn btn-danger" onclick="return confirm('bạn có muốn xóa không ?')"><i class="fas fa-trash-alt"></i></a>
                 <a href="chitietdonhang.php?get_ma_don=<?php echo $ma_don_hang; ?>" class="btn btn-success">Chi tiết đơn hàng</a>
               </td>
               <td>

@@ -1,9 +1,16 @@
 <?php 
+session_start();
 require_once 'connect.php';
 $sql = "SELECT *FROM khuyen_mai ";
 $result = mysqli_query($conn,$sql);
+if(isset($_SESSION['so_dien_thoai'])){
+  
+}
 $giam_gia =0;
 if(isset($_POST['btnapdung_KM']) && isset($_POST['voucher'])){
+  //gán mã khuyến mãi vào sesion
+  $_SESSION['payment_info']['ma_khuyen_mai'] = $_POST['voucher'];
+  //
   $voucher_name = $_POST['voucher'];
   $sql_giamgia = "SELECT giam_gia FROM khuyen_mai WHERE ma_khuyen_mai = '$voucher_name'";
   $result_giamgia=mysqli_query($conn,$sql_giamgia);
@@ -41,13 +48,33 @@ $tong_tien = $tam_tinh+$phivanchuyen;
 $sql_city = "SELECT * FROM province";
 $result_city = mysqli_query($conn,$sql_city);
 
+
+// Lưu thông tin giao hàng vào session
+if (isset($_POST['txtname']) && isset($_POST['txtemail']) && isset($_POST['txtphone']) && isset($_POST['txtaddress']) && isset($_POST['province']) && isset($_POST['district']) && isset($_POST['wards'])) {
+  $_SESSION['shipping_info'] = [
+      'name' => $_POST['txtname'],
+      'email' => $_POST['txtemail'],
+      'phone' => $_POST['txtphone'],
+      'address' => $_POST['txtaddress'],
+  ];
+}
+
+// Lưu thông tin thanh toán vào session
+$_SESSION['payment_info'] = [
+  'tam_tinh' => $tam_tinh,
+  'phivanchuyen' => $phivanchuyen,
+  'giam_gia' => $giam_gia,
+  'tong_tien' => $tong_tien,
+  'ma_khuyen_mai' => isset($_SESSION['payment_info']['ma_khuyen_mai']) ? $_SESSION['payment_info']['ma_khuyen_mai'] : ''
+  
+];
+
+// Đoạn mã kiểm tra session để quyết định có hiển thị phần chọn khuyến mãi hay không
+$show_khuyen_mai = isset($_SESSION['so_dien_thoai']); // Kiểm tra nếu đã đăng nhập
 // đóng kết nối
 mysqli_close($conn);
 ?>
 
-<?php
-session_start();
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -126,30 +153,24 @@ session_start();
         <div class="tieude">
           <a href="Trangchu.php"><h1>FRUIT STORE</h1></a>
         </div>
-        <div class="auth-section">
-           <div style="display: flex;">
-            <a href="Dangnhap_Index.php" class="btn-login btn btn-dark">ĐĂNG NHẬP</a>
-            <a href="Dangnhap_Index.php" class="btn-register btn btn-light">ĐĂNG KÝ</a>
-           </div>
-            <p>
-                Đăng nhập/ Đăng ký tài khoản để được tích điểm và nhận thêm nhiều ưu đãi từ FRUIT STORE.
-            </p>
-         </div>
-        <div class="dieukhien">
-          <ul>
-            <li><a href="./giohang.php">Giỏ hàng</a> <span> > </span></li>
-            <li><a href="#">Thông tin giao hàng</a> <span> > </span></li>
-            <li>phương thức thanh toán</li>
-          </ul>
-        </div>
+        <?php if (!isset($_SESSION['so_dien_thoai'])): ?>
+                <div class="auth-section">
+                    <div style="display: flex;">
+                        <a href="Dangnhap_Index.php" class="btn-login btn btn-dark">ĐĂNG NHẬP</a>
+                        <a href="Dangnhap_Index.php" class="btn-register btn btn-light">ĐĂNG KÝ</a>
+                    </div>
+                    <p>
+                        Đăng nhập/ Đăng ký tài khoản để được tích điểm và nhận thêm nhiều ưu đãi từ FRUIT STORE.
+                    </p>
+                </div>
+            <?php endif; ?>
         <div>
-          <h2>Thông tin giao hàng</h2>
+          <h2 style="text-align:center;">Thông tin giao hàng</h2>
         </div>
       </div>
       <div style="display:flex; justify-content: center">
         <!-- noidung -->
-      <form id="checkoutForm" action="" method = "get">
-      
+      <form id="checkoutForm" action="" method = "post">
         <table class="add_KH">
           <tr >
             <td colspan="3">
@@ -164,7 +185,7 @@ session_start();
                 id="name"
                 name="txtname"
               
-                value="<?php echo isset($_GET['txtname']) ? $_GET['txtname'] : ''; ?>"
+                value="<?php echo isset($_POST['txtname']) ? $_POST['txtname'] : ''; ?>"
               />
             </td>
           </tr>
@@ -179,7 +200,7 @@ session_start();
                     id="email"
                     name="txtemail"
                    
-                    value="<?php echo isset($_GET['txtemail']) ? $_GET['txtemail'] : ''; ?>"
+                    value="<?php echo isset($_POST['txtemail']) ? $_POST['txtemail'] : ''; ?>"
                   />
                 </div>
                 <div>
@@ -190,7 +211,7 @@ session_start();
                     id="phone"
                     name="txtphone"
                     
-                    value="<?php echo isset($_GET['txtphone']) ? $_GET['txtphone'] : ''; ?>"
+                    value="<?php echo isset($_POST['txtphone']) ? $_POST['txtphone'] : ''; ?>"
                   />
                 </div>
               </div>
@@ -198,7 +219,7 @@ session_start();
           </tr>
           <tr id="info_an" style="display: flex">
             <td colspan="3">
-              <label for="address">Địa chỉ</label>
+              <label for="address">Địa chỉ cụ thể</label>
             </td>
           </tr>
           <tr id="info_an1" style="display: flex">
@@ -209,7 +230,7 @@ session_start();
                 id="address"
                 name="txtaddress"
                 required
-                value ="<?php echo isset($_GET['txtaddress']) ? $_GET['txtaddress'] : ''; ?>"
+                value ="<?php echo isset($_POST['txtaddress']) ? $_POST['txtaddress'] : ''; ?>"
               />
             </td>
           </tr>
@@ -234,29 +255,25 @@ session_start();
            </td>
           </tr>
         </table>
-        </form>
-        
-        <form action="" method="post">
         <input type="hidden" id="cartTotalPriceInput" name="cartTotalPrice" value="" />
         <input type="hidden" id="cartvanchuyenInput" name="shippingFee" value="0" />
           <!-- table-left -->
         <table class="ship" style="height: 50px;">
             <tr>
             <td style="display: flex">
+            <?php if ($show_khuyen_mai): ?>
               <select id="voucher" name="voucher">
                 <option value="">Mã free Ship/Mã giảm giá</option>
-                <?php 
-                while($rows_KM = mysqli_fetch_assoc($result)){
-                 
-                  echo '<option value="' . $rows_KM['ma_khuyen_mai'] . '"' . (isset($_POST['voucher']) && $_POST['voucher'] == $rows_KM['ma_khuyen_mai'] ? ' selected' : '') . '>' . $rows_KM['ten_khuyen_mai'] . '</option>';
-                
-                }
-                ?>
-                <!-- Thêm các tùy chọn khác vào đây -->
-              </select>
+                <?php while ($rows_KM = mysqli_fetch_assoc($result)): ?>
+                    <option value="<?php echo $rows_KM['ma_khuyen_mai']; ?>"<?php echo (isset($_POST['voucher']) && $_POST['voucher'] == $rows_KM['ma_khuyen_mai']) ? ' selected' : ''; ?>><?php echo $rows_KM['ten_khuyen_mai']; ?></option>
+                <?php endwhile; ?>
+            </select>
               <div class="button_apdung">
                 <button type="submit" name="btnapdung_KM" >Áp dụng</button>
               </div>
+              <?php else: ?>
+            <p>Vui lòng đăng nhập để áp dụng khuyến mãi.</p>
+        <?php endif; ?>
             </td>
           </tr>
           <tr>
@@ -284,10 +301,9 @@ session_start();
             </td>
           </tr>
         </table>
-        </form>
-       
       </div>
-      <div class="buttun_thanhtoan " style="text-align:center;"> <button type="button" class="btn btn-dark" onclick="pay()">Tiếp tục thanh toán</button></div>
+      <div class="buttun_thanhtoan " style="text-align:center;"> <button type="submit" class="btn btn-dark" onclick="pay()">Tiếp tục thanh toán</button></div>
+       </form>
     </section>
     <!-- Phần cuối trang web -->
     <!-- ---------------Footer---------------- -->
@@ -330,6 +346,8 @@ session_start();
         </div>
       </div>
     </footer>
+
+    <!-- js -->
     <script>
       function pay() {
         
@@ -342,12 +360,12 @@ session_start();
     var wards = document.getElementById('wards').value;
 
   
-    if (!name || !email || !phone || !address || !province || !district || !wards) {
+    if (!name || !email || !phone || !address || !province /*|| !district || !wards*/) {
         alert('Vui lòng điền đầy đủ thông tin.');
         return;
     }
 
-    window.location.href = "./pay.php";
+    window.location.href = "./thanhtoandonhang.php";
       }
 
       document.addEventListener("DOMContentLoaded", (event) => {
@@ -437,8 +455,8 @@ session_start();
             }
         }
     </script>
-    <script src="JS/add.js"></script>
-    <script src="JS/diachi.js"></script>
+    
+<script src="JS/diachi.js"></script>
   </body>
 </html>
 

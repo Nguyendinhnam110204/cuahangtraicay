@@ -1,7 +1,47 @@
 <?php
 session_start();
-?>
+if (!isset($_SESSION['giohang'])) {
+  $_SESSION['giohang'] = [];
+}
+//echo var_dump($_SESSION['giohang']);
+if(isset($_GET['delete'])&& ($_GET['delete']>=0)){
+  array_splice($_SESSION['giohang'],$_GET['delete'],1);
+}
 
+$mycart ="";
+$tong=0;
+$i=0;
+foreach($_SESSION['giohang'] as $item){
+  extract($item);
+  $tt = $soluong*$gia;
+  $link="giohang.php?delete=".$i;
+  $mycart.='
+  <tr class="product_rows">
+                      <td>
+                        <img src="Img/'.$img.'" alt="" />'.$tensp.'
+                      </td>
+                      <td>
+                        <p><span class="price" style=" margin-left:50px;" >'.$tt.'</span><sup>đ</sup></p>
+                      </td>
+                      <td>
+                        <input
+                          style="width: 35px; outline: none; margin-left:40px;"
+                          type="number"
+                          value="'.$soluong.'"
+                          min="1"
+                        />
+                      </td>
+                      <td style="cursor: pointer;">
+                        <a
+                          href="'.$link.'"
+                          class="btn btn-danger"
+                          ><i class="fas fa-trash-alt"></i
+                        ></a>
+                      </td>
+                    </tr>';
+                    $i++;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -65,7 +105,11 @@ session_start();
                   <thead>
                     <tr>
                       <th colspan="4" class="title">
-                        <h2><b>Giỏ hàng của bạn</b></h2>
+                      <?php if(empty($_SESSION['giohang'])){
+                    echo "<h2><b>Giỏ hàng của bạn đang trống</b></h2>"; 
+                    }else{
+                      echo "<h2><b>Giỏ hàng của bạn</b></h2>";
+                    }?>
                       </th>
                     </tr>
                     <tr class="title2">
@@ -76,47 +120,13 @@ session_start();
                     </tr>
                   </thead>
                   <tbody class="danhmuc">
-                    <!-- lay ds tu csdl in ra   -->
-                     <?php 
-                     require_once 'connect.php';
-                     $select_giohang = "SELECT gh.ma_gio_hang , sp.ten_san_pham ,sp.url_hinh_anh, sp.gia, gh.tong_tien , gh.so_luong FROM gio_hang gh INNER JOIN san_pham sp ON gh.ma_san_pham = sp.ma_san_pham  ";
-                     
-                     $result = mysqli_query($conn,$select_giohang);
-                     while($rows = mysqli_fetch_assoc($result)){
-                      ?>
-                      <tr class="product_rows">
-                      <td>
-                        <img   src="<?php echo $rows['url_hinh_anh']; ?>" alt="" /><?php echo $rows['ten_san_pham'];?>
-                      </td>
-                      <td>
-                        <p><span class="price" ><?php echo $rows['so_luong']*$rows['gia'];  ?></span><sup>đ</sup></p>
-                      </td>
-                      <td>
-                        <input
-                        
-                          style="width: 35px; outline: none"
-                          type="number"
-                          value="<?php echo $rows['so_luong'];  ?>"
-                          min="1"
-                        />
-                      </td>
-                      <td style="cursor: pointer">
-                        <a
-                          href="xoa_gio_hang.php?get_ma_gio_hang=<?php echo $rows['ma_gio_hang']; ?>"
-                          class="btn btn-danger"
-                          onclick=" return confirm('bạn có muốn xóa không ?')"
-                          ><i class="fas fa-trash-alt"></i
-                        ></a>
-                      </td>
-                    </tr>
-                      <?php
-                     }
-                     ?>
+                    <!-- lay ds tu session in ra   -->
+                    <?=$mycart?>
                   </tbody>
                 </table>
               </form>
               <div class="continue-shopping">
-                <a href="Trangchu.php" class="btn btn-primary">← Tiếp tục mua hàng</a>
+                <a href="menu.php" class="btn btn-primary">← Tiếp tục mua hàng</a>
               </div>
             </div>
             <div class="cart-content-right">

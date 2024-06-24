@@ -10,17 +10,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Lấy dữ liệu từ form và thực hiện kiểm tra, làm sạch dữ liệu
     $so_dien_thoai = trim($_POST['so_dien_thoai']);
     $mat_khau = trim($_POST['mat_khau']);
+    
 
     // Chuẩn bị câu lệnh SQL với prepared statements để ngăn chặn SQL Injection
-    $stmt = $conn->prepare("SELECT mat_khau, email, ho_ten FROM nguoi_dung WHERE so_dien_thoai = ?");
-    $stmt->bind_param("s", $so_dien_thoai);
+    $stmt = $conn->prepare("SELECT ma_nguoi_dung, mat_khau, email, ho_ten FROM nguoi_dung WHERE email = ?");
+    $stmt->bind_param("s", $so_dien_thoai); // Đổi biến $so_dien_thoai thành $email nếu đây là email
+
 
     // Thực thi câu lệnh SQL
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($mat_khau_ma_hoa, $email_bam, $ho_ten);
+        $stmt->bind_result($ma_nguoi_dung,$mat_khau_ma_hoa, $email_bam, $ho_ten);
         $stmt->fetch();
 
         // Kiểm tra mật khẩu
@@ -30,6 +32,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['so_dien_thoai'] = $so_dien_thoai;
             $_SESSION['ho_ten'] = $ho_ten;
             $_SESSION['email'] = $email_bam; // Sửa $email thành $email_bam
+            $_SESSION['ma_nguoi_dung'] = $ma_nguoi_dung; // Lưu ma_nguoi_dung vào session
+
+        //     //bắc 
+        //     // Lấy mã người dùng từ cơ sở dữ liệu và lưu vào session
+        //    $stmt_user_id = $conn->prepare("SELECT user_id FROM nguoi_dung WHERE so_dien_thoai = ?");
+        //    $stmt_user_id->bind_param("s", $so_dien_thoai);
+        //    $stmt_user_id->execute();
+        //    $stmt_user_id->bind_result($user_id);
+        //    $stmt_user_id->fetch();
+        //    $stmt_user_id->close();
+           
 
             echo "<script>
                     alert('Đăng nhập thành công.');

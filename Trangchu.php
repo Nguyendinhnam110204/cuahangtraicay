@@ -121,7 +121,28 @@ session_start();
     </div>
 
     <!-- -------------------Sản phẩm------------------ -->
-
+    <form action="./gio_hang/addtocart_trangchu.php" method="post">
+      <!-- cam -->
+       <input type="hidden" name="tensp_Cam" value="Cam">
+      <input type="hidden" name="img_Cam" value="pngegg (1).png">
+      <input type="hidden" name="gia_Cam" value="2">
+      <input type="hidden" name="id_Cam" value="SP01">
+      <!-- dua -->
+      <input type="hidden" name="tensp_dua" value="Dứa">
+      <input type="hidden" name="img_dua" value="pngegg.png">
+      <input type="hidden" name="gia_dua" value="2">
+      <input type="hidden" name="id_dua" value="SP02">
+      <!-- Táo  -->
+      <input type="hidden" name="tensp_Tao" value="Táo ">
+      <input type="hidden" name="img_Tao" value="pngegg (3).png">
+      <input type="hidden" name="gia_Tao" value="2">
+      <input type="hidden" name="id_Tao" value="SP03">
+      <!-- Lựu -->
+      <input type="hidden" name="tensp_luu" value="Lựu ">
+      <input type="hidden" name="img_luu" value="pngegg (2).png">
+      <input type="hidden" name="gia_luu" value="2">
+      <input type="hidden" name="id_luu" value="SP04">
+       
     <div class="menu" id="Menu">
       <h1>Our<span>Menu</span></h1>
       <!-- Dứa -->
@@ -141,7 +162,7 @@ session_start();
               Hương Vị: Ngọt thanh, chua nhẹ, giòn, mọng nước và thơm mát.<br />
               Dinh Dưỡng: Giàu vitamin C, mangan, chất xơ và enzyme bromelain.
             </p>
-            <h3>$1.99</h3>
+            <h3>$2</h3>
             <div class="menu_icon">
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
@@ -149,7 +170,7 @@ session_start();
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
             </div>
-            <a href="#" class="menu_btn">Learn More</a>
+            <input type="submit" value="buy" name= "btnaddtocart_dua">
           </div>
           <div class="card_shopping">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -173,7 +194,7 @@ session_start();
               Hương Vị: Ngọt thanh, chua nhẹ, giòn, mọng nước và thơm mát.<br />
               Dinh Dưỡng: Giàu vitamin C, mangan, chất xơ và enzyme bromelain.
             </p>
-            <h3>$1.99</h3>
+            <h3>$2</h3>
             <div class="menu_icon">
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
@@ -181,7 +202,7 @@ session_start();
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
             </div>
-            <a href="#" class="menu_btn">Learn More</a>
+            <input type="submit" value="buy" name= "btnaddtocart_Tao">
           </div>
           <div class="card_shopping">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -205,7 +226,7 @@ session_start();
               Hương Vị: Ngọt thanh, chua nhẹ, giòn, mọng nước và thơm mát.<br />
               Dinh Dưỡng: Giàu vitamin C, mangan, chất xơ và enzyme bromelain.
             </p>
-            <h3>$1.99</h3>
+            <h3>$2</h3>
             <div class="menu_icon">
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
@@ -213,7 +234,7 @@ session_start();
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
             </div>
-            <a href="#" class="menu_btn">Learn More</a>
+            <input type="submit" value="buy" name= "btnaddtocart_luu">
           </div>
           <div class="card_shopping">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -222,7 +243,7 @@ session_start();
 
         <!-- Cam -->
 
-        <div class="menu_card">
+   <div class="menu_card">
           <div class="menu_img">
             <img src="./img/pngegg (1).png" alt="" />
           </div>
@@ -237,7 +258,7 @@ session_start();
               Hương Vị: Ngọt thanh, chua nhẹ, giòn, mọng nước và thơm mát.<br />
               Dinh Dưỡng: Giàu vitamin C, mangan, chất xơ và enzyme bromelain.
             </p>
-            <h3>$1.99</h3>
+            <h3>$2</h3>
             <div class="menu_icon">
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
@@ -245,7 +266,7 @@ session_start();
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
             </div>
-            <a href="#" class="menu_btn">Learn More</a>
+            <input type="submit" value="buy" name= "btnaddtocart_Cam">
           </div>
           <div class="card_shopping">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -253,6 +274,8 @@ session_start();
         </div>
       </div>
     </div>
+</form>
+       
 
     <!-- ----------------Nhà cung cấp----------------- -->
     <!-- <div class="supplier">
@@ -325,7 +348,6 @@ session_start();
         updateCartIcon();
       });
     </script>
-
 
     <script>
         document.getElementById('avatar').addEventListener('click', function() {

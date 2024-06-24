@@ -27,7 +27,7 @@ section nav {
 }
 
 section nav .logo img {
-  width: 80px;
+  width: 100px;
   cursor: pointer;
   margin: 7px 0;
 }
@@ -487,6 +487,23 @@ section .main_btn:hover i {
   margin: 0 80px;
   border-radius: 8px;
   transition: 0.3s;
+}
+.menu .menu_box .menu_card .menu_info input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #fff;
+  background: #fac030;
+  padding: 8px 10px;
+  margin: 0 80px;
+  border-radius: 8px;
+  transition: 0.3s;
+  margin-left: 120px;
+}
+.menu .menu_box .menu_card .menu_info input:hover {
+  background: #fda211;
+  color: #000;
 }
 
 .menu .menu_box .menu_card .menu_info .menu_btn:hover {

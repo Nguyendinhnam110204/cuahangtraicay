@@ -44,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Kiểm tra xem số điện thoại đã tồn tại trong cơ sở dữ liệu chưa
-    $stmt_check = $conn->prepare("SELECT ma_nguoi_dung FROM nguoi_dung WHERE so_dien_thoai = ?");
+    // Kiểm tra xem số email đã tồn tại trong cơ sở dữ liệu chưa
+    $stmt_check = $conn->prepare("SELECT ma_nguoi_dung FROM nguoi_dung WHERE email  = ?");
     $stmt_check->bind_param("s", $so_dien_thoai);
     $stmt_check->execute();
     $stmt_check->store_result();
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_bam = bam_email($email);
 
     // Chuẩn bị câu lệnh SQL với prepared statements để ngăn chặn SQL Injection
-    $stmt = $conn->prepare("INSERT INTO nguoi_dung (ma_nguoi_dung, so_dien_thoai, mat_khau, email, ho_ten) VALUES (UUID(), ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO nguoi_dung (ma_nguoi_dung, ten_dang_nhap, mat_khau, email, ho_ten) VALUES (UUID(), ?, ?, ?, ?)");
     $stmt->bind_param("ssss", $so_dien_thoai, $mat_khau_ma_hoa, $email_bam, $ho_ten);
 
     // Thực thi câu lệnh SQL

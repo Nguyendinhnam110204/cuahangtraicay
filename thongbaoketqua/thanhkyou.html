@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thêm vào giỏ hàng thành công</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <!-- Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Custom CSS -->
+    <style>
+      /* Hiệu ứng dấu tích */
+      .checkmark {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: block;
+        stroke-width: 2;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        margin: 10% auto 0;
+        box-shadow: inset 0px 0px 0px #7ac142;
+        animation: fill 0.4s ease-in-out 0.4s forwards,
+          scale 0.3s ease-in-out 0.9s both;
+      }
+
+      .checkmark__circle {
+        stroke-width: 2;
+        stroke: #7ac142;
+        stroke-miterlimit: 10;
+        fill: none;
+        animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+      }
+
+      .checkmark__check {
+        transform-origin: 50% 50%;
+        stroke-dasharray: 48;
+        stroke-dashoffset: 48;
+        animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+      }
+
+      @keyframes stroke {
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @keyframes scale {
+        0%,
+        100% {
+          transform: none;
+        }
+
+        50% {
+          transform: scale3d(1.1, 1.1, 1);
+        }
+      }
+
+      @keyframes fill {
+        100% {
+          box-shadow: inset 0px 0px 0px 30px #7ac142;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5" style="width: 100%;">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card animated">
+            <div class="card-body text-center">
+              <div class="checkmark">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 52 52"
+                  class="checkmark"
+                >
+                  <circle
+                    class="checkmark__circle"
+                    cx="26"
+                    cy="26"
+                    r="25"
+                    fill="none"
+                  />
+                  <path
+                    class="checkmark__check"
+                    fill="none"
+                    d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                  />
+                </svg>
+              </div>
+              <h3 class="card-title">Đơn hàng của bạn đã được đặt thành công!</h3>
+             <p class="card-text">Chúng tôi sẽ xác nhận và gửi hàng đến bạn trong thời gian sớm nhất.</p>
+            <p> Cảm ơn bạn đã tin tưởng và mua sắm tại cửa hàng của chúng tôi! </p>
+            <i style="color: red;" class="fas fa-heart icon-heart"></i>&nbsp;<i style="color: red;" class="fas fa-heart icon-heart"></i>&nbsp;<i style="color: red;" class="fas fa-heart icon-heart"></i><br>
+             <a href="../giohang.php" class="btn btn-primary">Quay lại Giỏ Hàng</a> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (jQuery, Popper.js) -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"
+      integrity="sha384-AJwXfFyvYlV+n7I0ZQiZP95GwBwO+mQZ97D/BdOgA6Q5fAV13uFWN08EZHLb+U3g"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+7Dk0XkgZeFQhAvtF8+0e7afKgG2FmxK8Xf"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

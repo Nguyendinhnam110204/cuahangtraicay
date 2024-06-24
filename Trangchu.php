@@ -44,7 +44,7 @@ session_start();
 
          <div class="icon-cart"> 
           <!-- mới phần giỏ hàng -->
-            <a href="giohang.php" target="_self">
+            <a href="giohang.php" target="_self" style="text-decoration: none;">
                 <i class="fa-solid fa-cart-shopping" number="0"></i>
             </a>
         </div> 

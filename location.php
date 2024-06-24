@@ -130,7 +130,7 @@ mysqli_close($conn);
         </div>
 
          <div class="icon-cart"> 
-        <a href="giohang.php"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
+        <a href="giohang.php" style="text-decoration: none;"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
          </div>
 
         <div class="icon">

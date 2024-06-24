@@ -77,7 +77,7 @@ foreach($_SESSION['giohang'] as $item){
           </form>
         </div>
         <div class="icon-cart">
-         <a href="#"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
+         <a href="#" style="text-decoration: none;"><i id="cart-icon" class="fa-solid fa-cart-shopping" number="0"></i></a>
         </div>
 
         <div class="icon">
